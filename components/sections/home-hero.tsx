@@ -67,6 +67,7 @@ function HeroCountdown() {
         alt=""
         width={235}
         height={109}
+        loading="eager"
         aria-hidden
         className="pointer-events-none absolute -top-[1.0625rem] left-1/2 h-[6.8125rem] w-[14.6875rem] max-w-none -translate-x-1/2"
       />
@@ -169,6 +170,7 @@ export function HomeHero() {
         alt=""
         width={1440}
         height={156}
+        loading="eager"
         aria-hidden
         className="pointer-events-none absolute bottom-0 left-[-11.8125rem] z-10 h-[9.75rem] w-[90rem] max-w-none"
       />
