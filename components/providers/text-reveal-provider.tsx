@@ -12,8 +12,15 @@ export function TextRevealProvider() {
     const media = gsap.matchMedia()
 
     media.add(
-      "(min-width: 48rem) and (prefers-reduced-motion: no-preference)",
-      () => {
+      {
+        desktop: "(min-width: 48rem)",
+        motionAllowed: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const isDesktop = context.conditions?.desktop
+
+        if (!context.conditions?.motionAllowed) return
+
         const revealGroups =
           gsap.utils.toArray<HTMLElement>("[data-text-reveal]")
 
@@ -29,14 +36,14 @@ export function TextRevealProvider() {
             {
               autoAlpha: 0,
               clipPath: "inset(0 0 100% 0)",
-              yPercent: 110,
+              yPercent: isDesktop ? 110 : 80,
             },
             {
               autoAlpha: 1,
-              duration: 0.95,
+              duration: isDesktop ? 0.95 : 0.68,
               ease: "power4.out",
               paused: true,
-              stagger: 0.1,
+              stagger: isDesktop ? 0.1 : 0.07,
               clipPath: "inset(0 0 0% 0)",
               yPercent: 0,
             }
@@ -48,7 +55,7 @@ export function TextRevealProvider() {
             ScrollTrigger.create({
               animation,
               once: true,
-              start: "top 84%",
+              start: isDesktop ? "top 84%" : "top 88%",
               trigger: group,
             })
           }
