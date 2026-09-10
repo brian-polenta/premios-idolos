@@ -33,10 +33,12 @@ function RecapHeading() {
   return (
     <div
       data-slot="home-recap_heading-wrapper"
+      data-text-reveal
       className="flex w-full flex-col items-center gap-8 text-center"
     >
       <Eyebrow
         lineClassName="w-[3.8125rem]"
+        data-text-reveal-item
         className="gap-[0.6875rem] leading-normal"
       >
         La antesala
@@ -44,6 +46,7 @@ function RecapHeading() {
 
       <h2
         data-slot="home-recap_heading"
+        data-text-reveal-item
         aria-label="Hicimos historia en dos grandes pantallas argentinas"
         className="type-display w-full font-display tracking-[-0.02em]"
       >

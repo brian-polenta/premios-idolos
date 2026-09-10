@@ -5,6 +5,8 @@ import { type ReactNode, useEffect } from "react"
 import { gsap } from "gsap"
 import Lenis from "lenis"
 
+import { TextRevealProvider } from "@/components/providers/text-reveal-provider"
+
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const mediaQuery = window.matchMedia(
@@ -51,5 +53,10 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  return children
+  return (
+    <>
+      <TextRevealProvider />
+      {children}
+    </>
+  )
 }

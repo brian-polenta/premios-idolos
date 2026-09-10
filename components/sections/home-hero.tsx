@@ -72,6 +72,7 @@ function HeroCountdown() {
   return (
     <div
       data-slot="home-hero_countdown"
+      data-text-reveal-item
       className="relative h-[5.9375rem] w-[12.25rem] shrink-0"
     >
       <Image
@@ -102,6 +103,7 @@ function HeroHeading() {
   return (
     <h1
       data-slot="home-hero_heading"
+      data-text-reveal-item
       aria-label="Los premios a los creadores que mueven al país"
       className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.79] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >
@@ -169,6 +171,8 @@ export function HomeHero() {
         >
           <div
             data-slot="home-hero_content"
+            data-text-reveal
+            data-text-reveal-load
             className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center md:translate-y-0 md:gap-[1.125rem]"
           >
             <HeroCountdown />
@@ -176,13 +180,20 @@ export function HomeHero() {
             <div className="flex w-full flex-col items-center gap-6">
               <div className="flex w-full flex-col items-center gap-3">
                 <HeroHeading />
-                <p className="max-w-[21.0625rem] text-[1.0625rem] leading-normal text-brand-paper/90">
+                <p
+                  data-text-reveal-item
+                  className="max-w-[21.0625rem] text-[1.0625rem] leading-normal text-brand-paper/90"
+                >
                   ¡Nominá a tus favoritos en cada categoría y el jurado corona a
                   los ganadores!
                 </p>
               </div>
 
-              <Button variant="secondary" className="text-xl">
+              <Button
+                data-text-reveal-item
+                variant="secondary"
+                className="text-xl"
+              >
                 Postular a mis ídolos
               </Button>
             </div>

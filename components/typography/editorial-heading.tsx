@@ -23,6 +23,7 @@ export function EditorialHeading({
   return (
     <div
       data-slot="editorial-heading"
+      data-text-reveal
       className={cn(
         "flex flex-col gap-6 md:gap-12",
         align === "center" ? "items-center text-center" : "items-start",
@@ -31,6 +32,7 @@ export function EditorialHeading({
       {...props}
     >
       <Eyebrow
+        data-text-reveal-item
         lineClassName="first:w-5 last:w-[3.8125rem]"
         className={cn(
           "gap-[0.6875rem] leading-normal",
@@ -41,6 +43,7 @@ export function EditorialHeading({
         {eyebrow}
       </Eyebrow>
       <h2
+        data-text-reveal-item
         className={cn(
           "font-display tracking-[-0.02em]",
           size === "large" ? "type-display-large" : "type-display"
