@@ -1,6 +1,7 @@
 import localFont from "next/font/local"
 
 import "./globals.css"
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
@@ -46,7 +47,9 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -112,6 +112,19 @@
     @apply min-h-screen bg-background text-foreground;
   }
 
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
   ::selection {
     background: var(--brand-ink);
     color: var(--brand-petal);
