@@ -208,7 +208,7 @@ export function HomeHero() {
         height={156}
         loading="eager"
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden h-[9.75rem] w-full md:block"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden h-auto w-full md:block"
       />
     </Section>
   )
