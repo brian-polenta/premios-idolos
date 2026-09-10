@@ -1,14 +1,31 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import localFont from "next/font/local"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const openSans = localFont({
+  src: "./fonts/open-sans-variable.ttf",
+  variable: "--font-open-sans",
+  display: "swap",
+})
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+const gambarino = localFont({
+  src: "./fonts/gambarino-regular.otf",
+  variable: "--font-gambarino",
+  display: "swap",
+})
+
+const rosevine = localFont({
+  src: "./fonts/rosevine-free.otf",
+  variable: "--font-rosevine",
+  display: "swap",
+})
+
+const meaCulpa = localFont({
+  src: "./fonts/mea-culpa-regular.ttf",
+  variable: "--font-mea-culpa",
+  display: "swap",
 })
 
 export default function RootLayout({
@@ -18,9 +35,15 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn(
+        "antialiased",
+        openSans.variable,
+        gambarino.variable,
+        rosevine.variable,
+        meaCulpa.variable
+      )}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
