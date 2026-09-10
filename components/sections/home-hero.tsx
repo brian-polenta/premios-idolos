@@ -138,7 +138,7 @@ export function HomeHero() {
       id="inicio"
       spacing="none"
       data-slot="home-hero_section"
-      className="relative min-h-[54.625rem] overflow-hidden bg-brand-charcoal text-brand-petal md:min-h-[53.5625rem]"
+      className="relative min-h-[100dvh] overflow-hidden bg-brand-charcoal text-brand-petal"
     >
       <video
         data-slot="home-hero_media"
@@ -162,7 +162,7 @@ export function HomeHero() {
 
       <HeroHeader />
 
-      <PageGutter className="relative z-10 flex min-h-[54.625rem] items-center px-[0.65625rem] pt-20 pb-28 md:min-h-[53.5625rem] md:items-end md:px-page md:pt-0 md:pb-[6.25rem]">
+      <PageGutter className="relative z-10 flex min-h-[100dvh] items-center px-[0.65625rem] pt-20 pb-28 md:items-end md:px-page md:pt-0 md:pb-[6.25rem]">
         <Container
           size="full"
           className="max-w-[23.8125rem] md:max-w-[46.4375rem]"
