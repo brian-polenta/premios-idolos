@@ -68,7 +68,8 @@
   --section-space-md: clamp(4rem, 7vw, 6.5rem);
   --section-space-lg: clamp(5rem, 9vw, 8.25rem);
 
-  --type-display: clamp(4rem, 7.2vw, 6.45rem);
+  --type-display: clamp(2.8125rem, 6.98vw, 6.284rem);
+  --type-display-large: clamp(4.6875rem, 6.98vw, 6.284rem);
   --type-h1: clamp(3.75rem, 7vw, 6.25rem);
   --type-h2: clamp(2.8125rem, 6vw, 4.6875rem);
   --type-h3: clamp(2rem, 3vw, 2.8125rem);
@@ -119,6 +120,7 @@
 
 @layer components {
   .type-display,
+  .type-display-large,
   .type-h1,
   .type-h2 {
     font-family: var(--font-display);
@@ -127,6 +129,11 @@
 
   .type-display {
     font-size: var(--type-display);
+    line-height: 0.9;
+  }
+
+  .type-display-large {
+    font-size: var(--type-display-large);
     line-height: 0.79;
   }
 
@@ -173,5 +180,32 @@
   .type-accent {
     font-family: var(--font-accent);
     font-weight: 400;
+  }
+
+  .marquee-row {
+    animation: marquee-left 32s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-row.is-reverse {
+    animation-name: marquee-right;
+  }
+}
+
+@keyframes marquee-left {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-row {
+    animation-play-state: paused;
   }
 }

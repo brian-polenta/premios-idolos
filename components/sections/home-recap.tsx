@@ -45,7 +45,7 @@ function RecapHeading() {
       <h2
         data-slot="home-recap_heading"
         aria-label="Hicimos historia en dos grandes pantallas argentinas"
-        className="w-full font-display text-[2.8125rem] leading-[0.9] tracking-[-0.02em] md:text-[clamp(4.5rem,6.1vw,5.5rem)] md:leading-[0.79]"
+        className="type-display w-full font-display tracking-[-0.02em]"
       >
         <span aria-hidden className="md:hidden">
           <span className="block whitespace-nowrap">
