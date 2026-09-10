@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils"
 
 export function Eyebrow({
   className,
+  lineClassName,
   children,
   ...props
-}: ComponentProps<"p">) {
+}: ComponentProps<"p"> & { lineClassName?: string }) {
   return (
     <p
       data-slot="eyebrow"
@@ -16,9 +17,9 @@ export function Eyebrow({
       )}
       {...props}
     >
-      <span aria-hidden className="h-px w-6 bg-current" />
+      <span aria-hidden className={cn("h-px w-6 bg-current", lineClassName)} />
       {children}
-      <span aria-hidden className="h-px w-6 bg-current" />
+      <span aria-hidden className={cn("h-px w-6 bg-current", lineClassName)} />
     </p>
   )
 }
