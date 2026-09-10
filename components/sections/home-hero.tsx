@@ -16,39 +16,51 @@ function HeroHeader() {
   return (
     <header
       data-slot="home-hero_header"
-      className="absolute inset-x-0 top-[2.375rem] z-20"
+      className="absolute inset-x-0 top-[2.375rem] z-20 md:top-[3.4375rem]"
     >
-      <PageGutter className="px-7">
+      <PageGutter className="px-7 md:px-page">
         <Container
           size="full"
-          className="relative flex max-w-[21.625rem] items-center justify-between"
+          className="relative flex max-w-[21.625rem] items-center justify-between md:max-w-[81.375rem]"
         >
-          <p className="flex flex-col text-[0.5625rem] leading-normal font-semibold text-brand-petal/50 uppercase">
+          <p className="flex flex-col text-[0.5625rem] leading-normal font-semibold text-brand-petal/50 uppercase md:flex-row md:items-center md:gap-3.5">
             <span>Argentina</span>
+            <span
+              aria-hidden
+              className="hidden h-2 w-px bg-brand-petal/50 md:block"
+            />
             <span>2026</span>
           </p>
 
           <BrandLogo
-            className="absolute left-1/2 w-[4.75rem] -translate-x-1/2"
+            className="absolute left-1/2 w-[4.75rem] -translate-x-1/2 md:w-28"
             priority
           />
 
-          <div className="flex items-center gap-2" aria-label="Redes sociales">
-            {socialChannels.map((channel) => (
-              <span
-                key={channel.name}
-                title={channel.name}
-                className="grid size-6 place-items-center rounded-pill border border-brand-petal/50"
-              >
-                <Image
-                  src={channel.icon}
-                  alt=""
-                  width={12}
-                  height={12}
-                  aria-hidden
-                />
-              </span>
-            ))}
+          <div className="flex items-center gap-3.5">
+            <span className="hidden text-[0.5625rem] leading-normal font-semibold text-brand-petal/50 uppercase md:block">
+              Seguinos
+            </span>
+            <div
+              className="flex items-center gap-2"
+              aria-label="Redes sociales"
+            >
+              {socialChannels.map((channel) => (
+                <span
+                  key={channel.name}
+                  title={channel.name}
+                  className="grid size-6 place-items-center rounded-pill border border-brand-petal/50"
+                >
+                  <Image
+                    src={channel.icon}
+                    alt=""
+                    width={12}
+                    height={12}
+                    aria-hidden
+                  />
+                </span>
+              ))}
+            </div>
           </div>
         </Container>
       </PageGutter>
@@ -85,15 +97,15 @@ function HeroCountdown() {
 
 function HeroHeading() {
   const accentClass =
-    "relative inline-block font-accent text-[1.17em] leading-[0] font-normal"
+    "relative inline-block font-accent text-[1.17em] leading-[0] font-normal md:text-[1em]"
 
   return (
     <h1
       data-slot="home-hero_heading"
       aria-label="Los premios a los creadores que mueven al país"
-      className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.79] tracking-[-0.02em] text-brand-petal"
+      className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.79] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >
-      <span aria-hidden>
+      <span aria-hidden className="md:hidden">
         <span className="block whitespace-nowrap">
           <span className={accentClass}>L</span>os premios a
         </span>
@@ -103,6 +115,17 @@ function HeroHeading() {
         <span className="block whitespace-nowrap">que mueven al</span>
         <span className="block whitespace-nowrap">
           <span className={accentClass}>P</span>ais
+        </span>
+      </span>
+      <span aria-hidden className="hidden md:block">
+        <span className="block whitespace-nowrap">
+          <span className={accentClass}>L</span>os premios a los
+        </span>
+        <span className="block whitespace-nowrap">
+          cread<span className={accentClass}>O</span>res que
+        </span>
+        <span className="block whitespace-nowrap">
+          mueven al <span className={accentClass}>P</span>ais
         </span>
       </span>
     </h1>
@@ -115,7 +138,7 @@ export function HomeHero() {
       id="inicio"
       spacing="none"
       data-slot="home-hero_section"
-      className="relative min-h-[54.625rem] overflow-hidden bg-brand-charcoal text-brand-petal"
+      className="relative min-h-[54.625rem] overflow-hidden bg-brand-charcoal text-brand-petal md:min-h-[53.5625rem]"
     >
       <video
         data-slot="home-hero_media"
@@ -133,17 +156,20 @@ export function HomeHero() {
 
       <div className="absolute inset-0 bg-brand-charcoal/45" aria-hidden />
       <div
-        className="absolute inset-x-0 bottom-0 h-[20.25rem] bg-gradient-to-b from-transparent to-[#0c0c0c]"
+        className="absolute inset-x-0 bottom-0 h-[20.25rem] bg-gradient-to-b from-transparent to-[#0c0c0c] md:hidden"
         aria-hidden
       />
 
       <HeroHeader />
 
-      <PageGutter className="relative z-10 flex min-h-[54.625rem] items-center px-[0.65625rem] pt-20 pb-28">
-        <Container size="full" className="max-w-[23.8125rem]">
+      <PageGutter className="relative z-10 flex min-h-[54.625rem] items-center px-[0.65625rem] pt-20 pb-28 md:min-h-[53.5625rem] md:items-end md:px-page md:pt-0 md:pb-[6.25rem]">
+        <Container
+          size="full"
+          className="max-w-[23.8125rem] md:max-w-[46.4375rem]"
+        >
           <div
             data-slot="home-hero_content"
-            className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center"
+            className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center md:translate-y-0 md:gap-[1.125rem]"
           >
             <HeroCountdown />
 
@@ -172,7 +198,17 @@ export function HomeHero() {
         height={156}
         loading="eager"
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-[-11.8125rem] z-10 h-[9.75rem] w-[90rem] max-w-none"
+        className="pointer-events-none absolute bottom-0 left-[-11.8125rem] z-10 h-[9.75rem] w-[90rem] max-w-none md:hidden"
+      />
+      <Image
+        data-slot="home-hero_transition-desktop"
+        src="/hero/section-transition-desktop.svg"
+        alt=""
+        width={1440}
+        height={156}
+        loading="eager"
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 hidden h-[9.75rem] w-full md:block"
       />
     </Section>
   )
