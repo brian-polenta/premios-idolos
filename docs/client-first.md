@@ -4,19 +4,19 @@ Este proyecto conserva el modelo mental de Client‑First de Finsweet sin copiar
 
 ## Traducción de conceptos
 
-| Client‑First en Webflow | En este proyecto |
-| --- | --- |
-| `page-wrapper` | `SiteShell` en el layout raíz |
-| `main-wrapper` | El elemento semántico `<main>` |
-| `section_[identifier]` | Componente `Section[Name]`, archivo descriptivo e `id` de sección |
-| `padding-global` | Primitiva `PageGutter` y token horizontal global |
-| `container-[size]` | Componente `Container` con variante `size` |
-| `padding-section-[size]` | Componente `Section` con variante `spacing` |
-| Clase personalizada como `home_hero_heading` | Nombre de componente o `data-slot="home_hero_heading"` |
-| Combo class `is-[variant]` | Prop tipada o variante de CVA, por ejemplo `tone="brand"` |
-| Utility class | Utilidad de Tailwind basada en tokens del proyecto |
+| Client‑First en Webflow                      | En este proyecto                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------- |
+| `page-wrapper`                               | Componente `PageWrapper` en cada composición de página            |
+| `main-wrapper`                               | Componente semántico `MainWrapper`                                |
+| `section_[identifier]`                       | Componente `Section[Name]`, archivo descriptivo e `id` de sección |
+| `padding-global`                             | Primitiva `PageGutter` y token horizontal global                  |
+| `container-[size]`                           | Componente `Container` con variante `size`                        |
+| `padding-section-[size]`                     | Componente `Section` con variante `spacing`                       |
+| Clase personalizada como `home_hero_heading` | Nombre de componente o `data-slot="home_hero_heading"`            |
+| Combo class `is-[variant]`                   | Prop tipada o variante de CVA, por ejemplo `tone="brand"`         |
+| Utility class                                | Utilidad de Tailwind basada en tokens del proyecto                |
 
-Las primitivas `SiteShell`, `PageGutter`, `Container` y `Section` se crearán cuando el diseño de Figma defina sus medidas reales. No se fijan valores visuales antes de tiempo.
+Las primitivas `PageWrapper`, `MainWrapper`, `PageGutter`, `Container` y `Section` forman la estructura global. Sus medidas responden a los tokens extraídos del diseño de Figma.
 
 ## Carpetas y nombres
 
