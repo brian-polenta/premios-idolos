@@ -25,9 +25,9 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenis = new Lenis({
         anchors: true,
         autoRaf: false,
-        lerp: 0.12,
+        lerp: 0.09,
         smoothWheel: true,
-        wheelMultiplier: 1,
+        wheelMultiplier: 0.85,
       })
       gsap.ticker.add(update)
       gsap.ticker.lagSmoothing(0)
