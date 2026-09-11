@@ -57,9 +57,7 @@ function JuryCard({
   judge: Judge
   withoutHorizontalStroke?: boolean
 }) {
-  const knownPhoto = judge.name.toLowerCase().includes("agustina fainguersch")
-    ? "/images/jury/agustina-fainbush.png"
-    : judge.photoUrl
+  const knownPhoto = judge.photoUrl
   const [firstName, ...remainingName] = judge.name.split(/\s+/)
 
   return (

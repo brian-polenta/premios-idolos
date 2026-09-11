@@ -57,8 +57,7 @@ export function CharacterRevealProvider() {
           const split = new SplitText(target, {
             charsClass: "char++",
             tag: "span",
-            type: "words,chars",
-            wordDelimiter: " ",
+            type: "chars",
           })
           splits.push(split)
 

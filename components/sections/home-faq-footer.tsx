@@ -153,7 +153,7 @@ export function HomeFaqFooter({ faqs }: { faqs: Faq[] }) {
                   <span>2026 Premios Ídolo Argentina</span>
                   <a href="#">Bases y condiciones</a>
                 </div>
-                <span className="justify-self-end lg:text-center">
+                <span className="justify-self-end lg:justify-self-center lg:text-center">
                   <span className="flex items-center gap-1 lg:hidden">
                     <span
                       aria-hidden

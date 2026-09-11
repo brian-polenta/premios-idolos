@@ -222,7 +222,7 @@
   }
 
   .marquee-row {
-    animation: marquee-left 68s linear infinite;
+    animation: marquee-left 150s linear infinite;
     will-change: transform;
   }
 
