@@ -65,7 +65,7 @@ function JuryCard({
   return (
     <article
       data-slot="jury-card"
-      className={`group relative flex min-h-[6.25rem] items-center gap-3 px-2 ${judge.companyLogoUrl ? "pt-12 pb-5" : "py-5"} lg:aspect-square lg:min-h-0 lg:justify-center lg:border-r lg:px-8 lg:py-5 lg:text-center ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
+      className={`group relative flex min-h-[6.25rem] items-start gap-4 px-[6px] py-[1.3125rem] lg:aspect-square lg:min-h-0 lg:items-center lg:justify-center lg:border-r lg:px-8 lg:py-5 lg:text-center ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
     >
       {knownPhoto && (
         <Image
@@ -97,9 +97,8 @@ function JuryCard({
             className="sr-only"
           />
           <span
-            role="img"
-            aria-label={judge.companyName}
-            className="pointer-events-none absolute top-5 left-1/2 z-10 h-5 w-[min(45%,7rem)] -translate-x-1/2 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:top-8 lg:h-7"
+            aria-hidden
+            className="pointer-events-none absolute top-8 left-1/2 z-10 hidden h-7 w-[min(45%,7rem)] -translate-x-1/2 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:block"
             style={{
               maskImage: `url(${judge.companyLogoUrl})`,
               maskPosition: "center",
@@ -121,7 +120,23 @@ function JuryCard({
           {judge.name.charAt(0)}
         </div>
       )}
-      <div className="relative z-10 flex flex-col gap-2">
+      <div className="relative z-10 flex flex-col items-start gap-[7px] lg:items-center">
+        {judge.companyLogoUrl && judge.companyName && (
+          <span
+            aria-hidden
+            className="pointer-events-none h-[0.875rem] w-[3.6875rem] shrink-0 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:hidden"
+            style={{
+              maskImage: `url(${judge.companyLogoUrl})`,
+              maskPosition: "left center",
+              maskRepeat: "no-repeat",
+              maskSize: "contain",
+              WebkitMaskImage: `url(${judge.companyLogoUrl})`,
+              WebkitMaskPosition: "left center",
+              WebkitMaskRepeat: "no-repeat",
+              WebkitMaskSize: "contain",
+            }}
+          />
+        )}
         <h3 className="font-serif text-[1.75rem] leading-[1.05] transition-colors duration-200 group-hover:text-brand-cream lg:min-h-[4.2rem] lg:content-center lg:text-[clamp(2rem,2.3vw,3rem)]">
           <span className="lg:hidden">{judge.name}</span>
           <span className="hidden lg:block">{firstName}</span>
