@@ -58,6 +58,12 @@ function JuryCard({
   withoutHorizontalStroke?: boolean
 }) {
   const knownPhoto = judge.photoUrl
+  const companyLogoSource =
+    judge.companyName === "Meta"
+      ? "/images/jury/logo-meta.svg"
+      : judge.companyName === "TikTok"
+        ? "/images/jury/logo-tiktok.svg"
+        : judge.companyLogoUrl
   const [firstName, ...remainingName] = judge.name.split(/\s+/)
 
   return (
@@ -84,10 +90,10 @@ function JuryCard({
           />
         </>
       )}
-      {judge.companyLogoUrl && judge.companyName && (
+      {companyLogoSource && judge.companyName && (
         <>
           <Image
-            src={judge.companyLogoUrl}
+            src={companyLogoSource}
             alt={judge.companyName}
             width={112}
             height={28}
@@ -98,11 +104,11 @@ function JuryCard({
             aria-hidden
             className="pointer-events-none absolute top-8 left-1/2 z-10 hidden h-7 w-[min(45%,7rem)] -translate-x-1/2 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:block"
             style={{
-              maskImage: `url(${judge.companyLogoUrl})`,
+              maskImage: `url(${companyLogoSource})`,
               maskPosition: "center",
               maskRepeat: "no-repeat",
               maskSize: "contain",
-              WebkitMaskImage: `url(${judge.companyLogoUrl})`,
+              WebkitMaskImage: `url(${companyLogoSource})`,
               WebkitMaskPosition: "center",
               WebkitMaskRepeat: "no-repeat",
               WebkitMaskSize: "contain",
@@ -119,16 +125,16 @@ function JuryCard({
         </div>
       )}
       <div className="relative z-10 flex flex-col items-start gap-[7px] lg:items-center">
-        {judge.companyLogoUrl && judge.companyName && (
+        {companyLogoSource && judge.companyName && (
           <span
             aria-hidden
             className="pointer-events-none h-[0.875rem] w-[3.6875rem] shrink-0 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:hidden"
             style={{
-              maskImage: `url(${judge.companyLogoUrl})`,
+              maskImage: `url(${companyLogoSource})`,
               maskPosition: "left center",
               maskRepeat: "no-repeat",
               maskSize: "contain",
-              WebkitMaskImage: `url(${judge.companyLogoUrl})`,
+              WebkitMaskImage: `url(${companyLogoSource})`,
               WebkitMaskPosition: "left center",
               WebkitMaskRepeat: "no-repeat",
               WebkitMaskSize: "contain",
