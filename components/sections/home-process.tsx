@@ -33,12 +33,18 @@ const steps = [
 function ProcessCallToAction() {
   return (
     <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
-      <p className="max-w-[18.3125rem] text-[1.0625rem] leading-normal text-brand-paper/90">
+      <p
+        data-line-reveal
+        data-line-reveal-delay="0.2"
+        className="max-w-[18.3125rem] text-[1.0625rem] leading-normal text-brand-paper/90"
+      >
         De ese creador que no dejás de mirar a un lugar entre los grandes.
       </p>
       <a
         href="#categorias"
-        className={buttonVariants({ variant: "secondary" })}
+        data-fade-reveal
+        data-fade-reveal-delay="0.2"
+        className={buttonVariants({ variant: "cta" })}
       >
         Postular a mis ídolos
       </a>
@@ -60,6 +66,7 @@ export function HomeProcess() {
         fill
         sizes="100vw"
         className="object-cover"
+        data-process-parallax
         aria-hidden
       />
       <div className="absolute inset-0 bg-black/60" aria-hidden />
@@ -69,7 +76,7 @@ export function HomeProcess() {
         width={1440}
         height={156}
         aria-hidden
-        className="pointer-events-none absolute top-0 left-1/2 z-10 h-auto w-[90rem] max-w-none -translate-x-1/2"
+        className="pointer-events-none absolute top-0 left-0 z-10 h-auto w-full origin-center -scale-y-100"
       />
       <Image
         src="/decorations/process-bottom.svg"
@@ -77,7 +84,7 @@ export function HomeProcess() {
         width={1440}
         height={156}
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-1/2 z-10 h-auto w-[90rem] max-w-none -translate-x-1/2"
+        className="pointer-events-none absolute bottom-0 left-0 z-10 h-auto w-full"
       />
 
       <PageGutter className="relative z-20">
@@ -104,12 +111,14 @@ export function HomeProcess() {
 
             <div
               data-slot="home-process_steps"
+              data-process-cards
               className="border-t border-brand-petal/30 md:border-t-0"
             >
               {steps.map((step) => (
                 <article
                   key={step.number}
                   data-slot="process-step"
+                  data-process-card-reveal
                   className="grid gap-8 border-b border-brand-petal/30 px-[1.125rem] py-[1.4375rem] md:grid-cols-[6.0625rem_1fr] md:gap-12"
                 >
                   <p className="font-accent text-[3.784rem] leading-[0.79] tracking-[-0.02em] text-brand-blush md:text-[6.284rem]">

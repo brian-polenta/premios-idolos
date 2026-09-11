@@ -10,7 +10,7 @@ const recaps = [
     year: "2024",
     venue: "Luzu",
     image: "/images/recap/luzu-2024.png",
-    logo: "/images/recap/luzu.svg",
+    logo: "/images/recap/luzu-logo.png",
     frame: "/images/recap/frame-left.svg",
     href: "https://www.youtube.com/watch?v=T_qqm1cTT0o&t=1855s",
     imagePosition: "object-center",
@@ -33,12 +33,10 @@ function RecapHeading() {
   return (
     <div
       data-slot="home-recap_heading-wrapper"
-      data-text-reveal
       className="flex w-full flex-col items-center gap-8 text-center"
     >
       <Eyebrow
         lineClassName="w-[3.8125rem]"
-        data-text-reveal-item
         className="gap-[0.6875rem] leading-normal"
       >
         La antesala
@@ -46,7 +44,7 @@ function RecapHeading() {
 
       <h2
         data-slot="home-recap_heading"
-        data-text-reveal-item
+        data-char-reveal
         aria-label="Hicimos historia en dos grandes pantallas argentinas"
         className="type-display w-full font-display tracking-[-0.02em]"
       >
@@ -63,7 +61,9 @@ function RecapHeading() {
         </span>
         <span aria-hidden className="hidden md:block">
           <span className="block whitespace-nowrap">
-            <span className={accentClass}>H</span>icimos historia en{" "}
+            <span className={accentClass}>H</span>icimos historia en
+          </span>
+          <span className="block whitespace-nowrap">
             <span className={accentClass}>D</span>os grandes pantallas
           </span>
           <span className="block whitespace-nowrap">
@@ -85,30 +85,36 @@ function RecapCard({ recap }: { recap: (typeof recaps)[number] }) {
       aria-label={`Ver recap ${recap.venue} ${recap.year} en YouTube`}
       className="group relative block aspect-[1.756/1] w-full overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-ink"
     >
-      <Image
-        src={recap.image}
-        alt=""
-        fill
-        sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"
-        className={`object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06] group-focus-visible:scale-[1.06] ${recap.imagePosition}`}
-      />
+      <div className="absolute inset-0 overflow-hidden transition-transform duration-1000 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]">
+        <Image
+          src={recap.image}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"
+          className={`object-cover ${recap.imagePosition}`}
+        />
+      </div>
       <div className="absolute inset-0 bg-brand-charcoal/25" aria-hidden />
       <div
         className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-b from-transparent to-brand-charcoal"
         aria-hidden
       />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-end pb-[7.5%] text-brand-paper">
-        <div className="flex flex-col items-center gap-[0.38rem] md:gap-3">
-          <Image
-            src={recap.logo}
-            alt=""
-            width={150}
-            height={70}
-            aria-hidden
-            className="h-6 w-auto object-contain md:h-11"
-          />
-          <p className="font-display text-[1.47rem] leading-none md:text-[2.75rem]">
+      <div className="absolute inset-0 flex flex-col items-center text-brand-paper">
+        <Image
+          src={recap.logo}
+          alt=""
+          width={150}
+          height={70}
+          aria-hidden
+          className="absolute top-[12%] h-6 w-auto object-contain md:h-[2.25rem]"
+        />
+        <p className="absolute top-[39%] font-display text-[3.25rem] leading-[0.79] tracking-[-0.02em] md:text-[4.456rem]">
+          <span className="font-accent">{recap.venue.charAt(0)}</span>
+          {recap.venue.slice(1)}
+        </p>
+        <div className="absolute bottom-[8%] flex flex-col items-center gap-[0.55rem] md:gap-3">
+          <p className="font-display text-[2.1rem] leading-[0.79] md:text-[2.75rem]">
             {recap.year}
           </p>
           <span className="text-[0.506rem] leading-normal font-semibold underline underline-offset-2 opacity-60 md:text-[0.945rem]">
@@ -123,7 +129,7 @@ function RecapCard({ recap }: { recap: (typeof recaps)[number] }) {
         fill
         sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"
         aria-hidden
-        className="pointer-events-none z-10"
+        className="pointer-events-none z-10 scale-[1.007]"
       />
     </a>
   )

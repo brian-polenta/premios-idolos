@@ -16,40 +16,50 @@ function HeroHeader() {
   return (
     <header
       data-slot="home-hero_header"
-      className="absolute inset-x-0 top-[2.375rem] z-20 md:top-[3.4375rem]"
+      className="absolute inset-x-0 top-[2.375rem] z-20 md:top-[2.75rem]"
     >
-      <PageGutter className="px-7 md:px-page">
+      <PageGutter>
         <Container
           size="full"
-          className="relative flex max-w-[21.625rem] items-center justify-between md:max-w-[81.375rem]"
+          className="relative flex items-center justify-between"
         >
-          <p className="flex flex-col text-[0.5625rem] leading-normal font-semibold text-brand-petal/50 uppercase md:flex-row md:items-center md:gap-3.5">
+          <p
+            data-hero-load="header"
+            className="flex flex-col text-[0.5625rem] leading-normal font-semibold text-brand-petal/60 uppercase md:flex-row md:items-center md:gap-3.5 md:text-[0.6875rem]"
+          >
             <span>Argentina</span>
             <span
               aria-hidden
-              className="hidden h-2 w-px bg-brand-petal/50 md:block"
+              className="hidden h-2.5 w-px bg-brand-petal/45 md:block"
             />
             <span>2026</span>
           </p>
 
-          <BrandLogo
-            className="absolute left-1/2 w-[4.75rem] -translate-x-1/2 md:w-28"
-            priority
-          />
+          <div
+            data-hero-load="brand"
+            className="absolute left-1/2 w-[4.75rem] -translate-x-1/2 md:w-[7.25rem]"
+          >
+            <BrandLogo priority />
+          </div>
 
-          <div className="flex items-center gap-3.5">
-            <span className="hidden text-[0.5625rem] leading-normal font-semibold text-brand-petal/50 uppercase md:block">
+          <div
+            data-hero-load="header"
+            className="flex items-center gap-3.5 md:gap-4"
+          >
+            <span className="hidden text-[0.6875rem] leading-normal font-semibold text-brand-petal/60 uppercase md:block">
               Seguinos
             </span>
             <div
-              className="flex items-center gap-2"
+              className="flex items-center gap-2.5"
               aria-label="Redes sociales"
             >
               {socialChannels.map((channel) => (
-                <span
+                <a
                   key={channel.name}
+                  href="#"
                   title={channel.name}
-                  className="grid size-6 place-items-center rounded-pill border border-brand-petal/50"
+                  aria-label={channel.name}
+                  className="group grid size-6 place-items-center rounded-pill border border-brand-petal/35 transition-colors duration-300 hover:border-brand-blush hover:bg-brand-blush md:size-7"
                 >
                   <Image
                     src={channel.icon}
@@ -57,8 +67,9 @@ function HeroHeader() {
                     width={12}
                     height={12}
                     aria-hidden
+                    className="transition duration-300 group-hover:brightness-0 group-hover:invert"
                   />
-                </span>
+                </a>
               ))}
             </div>
           </div>
@@ -72,17 +83,17 @@ function HeroCountdown() {
   return (
     <div
       data-slot="home-hero_countdown"
-      data-text-reveal-item
-      className="relative h-[5.9375rem] w-[12.25rem] shrink-0"
+      data-hero-load="countdown"
+      className="relative h-[5.9375rem] w-[12.25rem] shrink-0 overflow-visible"
     >
       <Image
-        src="/hero/countdown-frame.svg"
+        src="/hero/countdown-head.png"
         alt=""
-        width={235}
-        height={109}
+        width={240}
+        height={96}
         loading="eager"
         aria-hidden
-        className="pointer-events-none absolute -top-[1.0625rem] left-1/2 h-[6.8125rem] w-[14.6875rem] max-w-none -translate-x-1/2"
+        className="pointer-events-none absolute -top-[0.875rem] left-1/2 max-w-none -translate-x-1/2"
       />
       <div className="absolute inset-x-0 top-12 flex flex-col items-center gap-[0.1875rem] text-center">
         <p className="font-serif text-[1.26125rem] leading-normal text-brand-paper/90">
@@ -102,10 +113,13 @@ function HeroHeading() {
 
   return (
     <h1
+      id="hero-heading"
       data-slot="home-hero_heading"
-      data-text-reveal-item
+      data-char-reveal
+      data-char-reveal-load
+      data-page-load-at="0.32"
       aria-label="Los premios a los creadores que mueven al país"
-      className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.79] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
+      className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >
       <span aria-hidden className="md:hidden">
         <span className="block whitespace-nowrap">
@@ -144,6 +158,7 @@ export function HomeHero() {
     >
       <video
         data-slot="home-hero_media"
+        data-hero-parallax
         className="absolute inset-0 size-full object-cover opacity-75"
         autoPlay
         loop
@@ -171,8 +186,6 @@ export function HomeHero() {
         >
           <div
             data-slot="home-hero_content"
-            data-text-reveal
-            data-text-reveal-load
             className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center md:translate-y-0 md:gap-[1.125rem]"
           >
             <HeroCountdown />
@@ -181,7 +194,9 @@ export function HomeHero() {
               <div className="flex w-full flex-col items-center gap-3">
                 <HeroHeading />
                 <p
-                  data-text-reveal-item
+                  data-line-reveal
+                  data-line-reveal-load
+                  data-page-load-at="1.75"
                   className="max-w-[21.0625rem] text-[1.0625rem] leading-normal text-brand-paper/90"
                 >
                   ¡Nominá a tus favoritos en cada categoría y el jurado corona a
@@ -189,11 +204,7 @@ export function HomeHero() {
                 </p>
               </div>
 
-              <Button
-                data-text-reveal-item
-                variant="secondary"
-                className="text-xl"
-              >
+              <Button variant="cta" data-hero-load="cta" className="text-xl">
                 Postular a mis ídolos
               </Button>
             </div>

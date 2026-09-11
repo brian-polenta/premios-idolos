@@ -13,7 +13,7 @@ const containerVariants = cva("mx-auto w-full", {
       full: "max-w-none",
     },
   },
-  defaultVariants: { size: "large" },
+  defaultVariants: { size: "full" },
 })
 
 export function Container({

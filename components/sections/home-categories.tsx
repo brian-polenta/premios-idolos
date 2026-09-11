@@ -42,14 +42,18 @@ export function HomeCategories({ categories }: { categories: Category[] }) {
             data-slot="home-categories_component"
             className="flex flex-col items-center gap-12 md:gap-[4.5rem]"
           >
-            <EditorialHeading eyebrow="Las categorías" align="center">
+            <EditorialHeading
+              eyebrow="Las categorías"
+              align="center"
+              className="gap-4 md:gap-7 [&_h2]:max-w-[38.3125rem]"
+            >
               <span className="font-accent">C</span>ada universo tiene a su{" "}
               <span className="font-accent">Í</span>dolo
             </EditorialHeading>
 
             <div
               data-slot="home-categories_marquee"
-              className="relative left-1/2 flex w-screen -translate-x-1/2 flex-col gap-2 overflow-hidden md:gap-6"
+              className="-mx-page flex w-[calc(100%+var(--page-gutter)*2)] flex-col gap-2 overflow-hidden md:gap-6"
               aria-label="Categorías de Premios Ídolo"
             >
               <div className="marquee-row flex w-max gap-2 md:gap-6">

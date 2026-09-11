@@ -60,7 +60,7 @@
   --brand-yellow: #f8c317;
   --brand-pink: #f9d7f3;
 
-  --page-gutter: clamp(1rem, 2.78vw, 2.5rem);
+  --page-gutter: clamp(1rem, 2.5vw, 3rem);
   --container-sm: 45rem;
   --container-md: 65rem;
   --container-lg: 85rem;
@@ -132,6 +132,32 @@
 }
 
 @layer components {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-char-reveal] {
+      visibility: hidden;
+    }
+
+    [data-hero-load] {
+      visibility: hidden;
+    }
+
+    [data-eyebrow-reveal] {
+      visibility: hidden;
+    }
+
+    [data-fade-reveal] {
+      visibility: hidden;
+    }
+
+    [data-process-card-reveal] {
+      visibility: hidden;
+    }
+
+    [data-line-reveal] {
+      visibility: hidden;
+    }
+  }
+
   .type-display,
   .type-display-large,
   .type-h1,
@@ -196,7 +222,7 @@
   }
 
   .marquee-row {
-    animation: marquee-left 32s linear infinite;
+    animation: marquee-left 68s linear infinite;
     will-change: transform;
   }
 

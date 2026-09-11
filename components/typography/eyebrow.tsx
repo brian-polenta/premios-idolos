@@ -11,6 +11,7 @@ export function Eyebrow({
   return (
     <p
       data-slot="eyebrow"
+      data-eyebrow-reveal
       className={cn(
         "flex items-center gap-3 font-display text-[1.375rem] leading-none",
         className

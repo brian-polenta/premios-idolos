@@ -5,7 +5,8 @@ import { type ReactNode, useEffect } from "react"
 import { gsap } from "gsap"
 import Lenis from "lenis"
 
-import { TextRevealProvider } from "@/components/providers/text-reveal-provider"
+import { CharacterRevealProvider } from "@/components/providers/character-reveal-provider"
+import { ScrollEffectsProvider } from "@/components/providers/scroll-effects-provider"
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -24,8 +25,9 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       lenis = new Lenis({
         anchors: true,
         autoRaf: false,
-        lerp: 0.1,
+        lerp: 0.12,
         smoothWheel: true,
+        wheelMultiplier: 1,
       })
       gsap.ticker.add(update)
       gsap.ticker.lagSmoothing(0)
@@ -55,7 +57,8 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <TextRevealProvider />
+      <CharacterRevealProvider />
+      <ScrollEffectsProvider />
       {children}
     </>
   )
