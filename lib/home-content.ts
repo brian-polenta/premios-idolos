@@ -4,6 +4,7 @@ export type Category = {
   name: string
   slug: string
   order: number
+  isActive?: boolean
 }
 
 export type Faq = {
@@ -15,6 +16,8 @@ export type Faq = {
 export type Judge = {
   name: string
   position: string
+  companyName?: string
+  companyLogoUrl?: string
   photoUrl?: string
   photoStatus: "pending" | "ready"
   order: number
@@ -27,10 +30,11 @@ export type HomeContent = {
 }
 
 const homeContentQuery = `{
-  "categories": *[_type == "category"] | order(order asc) {
+  "categories": *[_type == "category" && (!defined(isActive) || isActive)] | order(order asc) {
     name,
     "slug": slug.current,
-    order
+    order,
+    isActive
   },
   "faqs": *[_type == "faq"] | order(order asc) {
     question,
@@ -40,6 +44,8 @@ const homeContentQuery = `{
   "judges": *[_type == "judge"] | order(order asc) {
     name,
     position,
+    companyName,
+    "companyLogoUrl": companyLogo.asset->url,
     "photoUrl": photo.asset->url,
     photoStatus,
     order

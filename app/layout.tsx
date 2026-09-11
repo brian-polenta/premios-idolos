@@ -1,9 +1,82 @@
 import localFont from "next/font/local"
+import type { Metadata } from "next"
 
 import "./globals.css"
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://premios-idolos.vercel.app"),
+  title: "Premios Ídolo 2026 | Los creadores que mueven al país",
+  description:
+    "Nominá a tus creadores favoritos en Premios Ídolo 2026. La comunidad y el jurado reconocen a quienes mueven al país.",
+  alternates: {
+    canonical: "/",
+  },
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: "/",
+    siteName: "Premios Ídolo",
+    title: "Premios Ídolo 2026 | Los creadores que mueven al país",
+    description: "Nominá a tus creadores favoritos en Premios Ídolo 2026.",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Premios Ídolo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premios Ídolo 2026 | Los creadores que mueven al país",
+    description: "Nominá a tus creadores favoritos en Premios Ídolo 2026.",
+    images: ["/opengraph-image.jpg"],
+  },
+}
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: "Premios Ídolo",
+      url: "https://premios-idolos.vercel.app",
+      logo: "https://premios-idolos.vercel.app/apple-icon.png",
+    },
+    {
+      "@type": "Event",
+      name: "Premios Ídolo 2026",
+      description:
+        "Los premios a los creadores que mueven al país. Nominá a tus favoritos en cada categoría.",
+      url: "https://premios-idolos.vercel.app",
+      image: "https://premios-idolos.vercel.app/opengraph-image.jpg",
+      startDate: "2026-10-28",
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: {
+        "@type": "Place",
+        name: "Argentina",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "AR",
+        },
+      },
+      organizer: {
+        "@type": "Organization",
+        name: "Premios Ídolo",
+        url: "https://premios-idolos.vercel.app",
+      },
+    },
+  ],
+}
 
 const openSans = localFont({
   src: "./fonts/open-sans-variable.ttf",
@@ -46,6 +119,14 @@ export default function RootLayout({
         meaCulpa.variable
       )}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+      </head>
       <body>
         <ThemeProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>

@@ -47,8 +47,12 @@ export function HomeCategories({ categories }: { categories: Category[] }) {
               align="center"
               className="gap-4 md:gap-7 [&_h2]:max-w-[38.3125rem]"
             >
-              <span className="font-accent">C</span>ada universo tiene a su{" "}
-              <span className="font-accent">Í</span>dolo
+              <span className="block">
+                <span className="font-accent">C</span>ada universo
+              </span>
+              <span className="block">
+                tiene a su <span className="font-accent">Í</span>dolo
+              </span>
             </EditorialHeading>
 
             <div

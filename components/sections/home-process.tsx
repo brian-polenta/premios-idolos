@@ -32,7 +32,7 @@ const steps = [
 
 function ProcessCallToAction() {
   return (
-    <div className="flex flex-col items-center gap-5 text-center md:items-start md:text-left">
+    <div className="flex flex-col items-center gap-5 text-center lg:items-start lg:text-left">
       <p
         data-line-reveal
         data-line-reveal-delay="0.2"
@@ -58,25 +58,34 @@ export function HomeProcess() {
       id="proceso"
       spacing="none"
       data-slot="home-process_section"
-      className="relative overflow-hidden bg-brand-charcoal text-brand-petal"
+      className="relative bg-brand-charcoal text-brand-petal"
     >
-      <Image
-        src="/images/process/background.jpg"
-        alt=""
-        fill
-        sizes="100vw"
-        className="object-cover"
-        data-process-parallax
-        aria-hidden
-      />
-      <div className="absolute inset-0 bg-black/60" aria-hidden />
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
+        <Image
+          src="/images/process/background.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+          data-process-parallax
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      </div>
       <Image
         src="/decorations/process-top.svg"
         alt=""
         width={1440}
         height={156}
         aria-hidden
-        className="pointer-events-none absolute top-0 left-0 z-10 h-auto w-full origin-center -scale-y-100"
+        className="pointer-events-none absolute -top-[3px] left-0 z-10 h-auto w-full lg:hidden"
+      />
+      <Image
+        src="/decorations/process-top-desktop.svg"
+        alt=""
+        width={1440}
+        height={156}
+        aria-hidden
+        className="pointer-events-none absolute -top-[3px] left-0 z-10 hidden h-auto w-full origin-center -scale-y-100 lg:block"
       />
       <Image
         src="/decorations/process-bottom.svg"
@@ -84,27 +93,35 @@ export function HomeProcess() {
         width={1440}
         height={156}
         aria-hidden
-        className="pointer-events-none absolute bottom-0 left-0 z-10 h-auto w-full"
+        className="pointer-events-none absolute -bottom-[3px] left-0 z-10 h-auto w-full lg:hidden"
+      />
+      <Image
+        src="/decorations/process-bottom-desktop.svg"
+        alt=""
+        width={1440}
+        height={156}
+        aria-hidden
+        className="pointer-events-none absolute -bottom-[3px] left-0 z-10 hidden h-auto w-full lg:block"
       />
 
       <PageGutter className="relative z-20">
         <Container>
           <div
             data-slot="home-process_component"
-            className="flex flex-col gap-14 py-28 md:grid md:min-h-[53rem] md:grid-cols-[32.8125rem_1fr] md:gap-[4.5rem] md:py-[8.25rem]"
+            className="flex flex-col gap-14 py-28 lg:grid lg:min-h-[53rem] lg:grid-cols-[32.8125rem_1fr] lg:gap-[4.5rem] lg:py-[8.25rem]"
           >
-            <div className="flex flex-col items-center gap-12 md:items-start md:justify-between">
+            <div className="flex flex-col items-center gap-12 lg:items-start lg:justify-between">
               <EditorialHeading
                 eyebrow="El proceso"
                 eyebrowTone="blush"
                 align="center"
                 size="large"
-                className="md:items-start md:text-left md:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
+                className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
               >
                 <span className="font-accent">T</span>odo empieza con{" "}
                 <span className="font-accent">V</span>os
               </EditorialHeading>
-              <div className="hidden md:block">
+              <div className="hidden lg:block">
                 <ProcessCallToAction />
               </div>
             </div>
@@ -112,19 +129,19 @@ export function HomeProcess() {
             <div
               data-slot="home-process_steps"
               data-process-cards
-              className="border-t border-brand-petal/30 md:border-t-0"
+              className="border-t border-brand-petal/30 lg:border-t-0"
             >
               {steps.map((step) => (
                 <article
                   key={step.number}
                   data-slot="process-step"
                   data-process-card-reveal
-                  className="grid gap-8 border-b border-brand-petal/30 px-[1.125rem] py-[1.4375rem] md:grid-cols-[6.0625rem_1fr] md:gap-12"
+                  className="grid gap-8 border-b border-brand-petal/30 px-[1.125rem] py-[1.4375rem] lg:grid-cols-[6.0625rem_1fr] lg:gap-12"
                 >
-                  <p className="font-accent text-[3.784rem] leading-[0.79] tracking-[-0.02em] text-brand-blush md:text-[6.284rem]">
+                  <p className="font-accent text-[3.784rem] leading-[0.79] tracking-[-0.02em] text-brand-blush lg:text-[6.284rem]">
                     {step.number}
                   </p>
-                  <div className="flex flex-col gap-[0.1875rem] md:py-3.5">
+                  <div className="flex flex-col gap-[0.1875rem] lg:py-3.5">
                     <p className="text-xs leading-normal font-semibold text-brand-blush">
                       {step.eyebrow}
                     </p>
@@ -139,7 +156,7 @@ export function HomeProcess() {
               ))}
             </div>
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <ProcessCallToAction />
             </div>
           </div>

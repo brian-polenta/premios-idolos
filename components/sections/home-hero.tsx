@@ -8,8 +8,7 @@ import { Button } from "@/components/ui/button"
 
 const socialChannels = [
   { name: "Instagram", icon: "/hero/instagram.svg" },
-  { name: "X", icon: "/hero/x.svg" },
-  { name: "YouTube", icon: "/hero/youtube.svg" },
+  { name: "TikTok", icon: "/hero/tiktok.svg" },
 ] as const
 
 function HeroHeader() {

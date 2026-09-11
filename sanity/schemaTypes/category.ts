@@ -25,6 +25,13 @@ export const categoryType = defineType({
       initialValue: 0,
       validation: (rule) => rule.required().integer().min(0),
     }),
+    defineField({
+      name: 'isActive',
+      title: 'Visible en el sitio',
+      type: 'boolean',
+      initialValue: true,
+      description: 'Desactivá esta opción para conservar una categoría en el CMS sin mostrarla en el sitio.',
+    }),
   ],
   orderings: [
     {

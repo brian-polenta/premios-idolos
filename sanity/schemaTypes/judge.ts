@@ -18,6 +18,19 @@ export const judgeType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'companyName',
+      title: 'Empresa o marca',
+      type: 'string',
+      description: 'Se usa como texto alternativo del logo para accesibilidad y SEO.',
+    }),
+    defineField({
+      name: 'companyLogo',
+      title: 'Logo de empresa o marca',
+      type: 'image',
+      options: {hotspot: false},
+      description: 'Cargá también el nombre de la empresa o marca para el texto alternativo.',
+    }),
+    defineField({
       name: 'photo',
       title: 'Foto',
       type: 'image',

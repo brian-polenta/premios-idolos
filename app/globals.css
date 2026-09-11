@@ -229,6 +229,10 @@
   .marquee-row.is-reverse {
     animation-name: marquee-right;
   }
+
+  .marquee-row:hover {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes marquee-left {

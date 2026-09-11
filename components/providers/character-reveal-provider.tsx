@@ -201,7 +201,7 @@ export function CharacterRevealProvider() {
           const animation = gsap.to(target, {
             autoAlpha: 1,
             delay: Number(target.dataset.fadeRevealDelay ?? 0),
-            duration: 0.45,
+            duration: Number(target.dataset.fadeRevealDuration ?? 0.45),
             ease: "power2.out",
             paused: true,
           })
@@ -234,15 +234,14 @@ export function CharacterRevealProvider() {
           cards.forEach((card) => {
             card.style.visibility = "visible"
           })
-          gsap.set(cards, { autoAlpha: 0, y: 8 })
+          gsap.set(cards, { autoAlpha: 0 })
 
           const animation = gsap.to(cards, {
             autoAlpha: 1,
-            duration: 0.55,
+            duration: 1.7,
             ease: "power2.out",
             paused: true,
-            stagger: 0.12,
-            y: 0,
+            stagger: 0.32,
           })
           const isAlreadyVisible =
             group.getBoundingClientRect().top < window.innerHeight
@@ -257,6 +256,44 @@ export function CharacterRevealProvider() {
             once: true,
             start: "top 85%",
             trigger: group,
+          })
+        })
+
+        const faqLists = gsap.utils.toArray<HTMLElement>(
+          "[data-faq-list-reveal]"
+        )
+
+        faqLists.forEach((list) => {
+          const items = gsap.utils.toArray<HTMLElement>(
+            "[data-faq-item-reveal]",
+            list
+          )
+
+          items.forEach((item) => {
+            item.style.visibility = "visible"
+          })
+          gsap.set(items, { autoAlpha: 0 })
+
+          const animation = gsap.to(items, {
+            autoAlpha: 1,
+            duration: 1.7,
+            ease: "power2.out",
+            paused: true,
+            stagger: 0.32,
+          })
+          const isAlreadyVisible =
+            list.getBoundingClientRect().top < window.innerHeight
+
+          if (isAlreadyVisible) {
+            animation.play()
+            return
+          }
+
+          ScrollTrigger.create({
+            animation,
+            once: true,
+            start: "top 85%",
+            trigger: list,
           })
         })
 

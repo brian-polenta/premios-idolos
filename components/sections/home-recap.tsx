@@ -11,7 +11,8 @@ const recaps = [
     venue: "Luzu",
     image: "/images/recap/luzu-2024.png",
     logo: "/images/recap/luzu-logo.png",
-    frame: "/images/recap/frame-left.svg",
+    frameMobile: "/images/recap/frame-luzu-test.png",
+    frameDesktop: "/images/recap/frame-left.svg",
     href: "https://www.youtube.com/watch?v=T_qqm1cTT0o&t=1855s",
     imagePosition: "object-center",
   },
@@ -20,7 +21,8 @@ const recaps = [
     venue: "Telefe",
     image: "/images/recap/telefe-2025.png",
     logo: "/images/recap/telefe.png",
-    frame: "/images/recap/frame-right.svg",
+    frameMobile: "/images/recap/frame-luzu-test.png",
+    frameDesktop: "/images/recap/frame-right.svg",
     href: "https://www.youtube.com/watch?v=nTYW3Q8o2Us",
     imagePosition: "object-center",
   },
@@ -75,15 +77,24 @@ function RecapHeading() {
   )
 }
 
-function RecapCard({ recap }: { recap: (typeof recaps)[number] }) {
+function RecapCard({
+  recap,
+  index,
+}: {
+  recap: (typeof recaps)[number]
+  index: number
+}) {
   return (
     <a
       data-slot="recap-card"
+      data-fade-reveal
+      data-fade-reveal-duration="1.7"
+      data-fade-reveal-delay={index * 0.4}
       href={recap.href}
       target="_blank"
       rel="noreferrer noopener"
       aria-label={`Ver recap ${recap.venue} ${recap.year} en YouTube`}
-      className="group relative block aspect-[1.756/1] w-full overflow-hidden focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-ink"
+      className="group relative block aspect-[1.756/1] w-full overflow-visible focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-ink md:overflow-hidden"
     >
       <div className="absolute inset-0 overflow-hidden transition-transform duration-1000 ease-out group-hover:scale-[1.02] group-focus-visible:scale-[1.02]">
         <Image
@@ -117,19 +128,27 @@ function RecapCard({ recap }: { recap: (typeof recaps)[number] }) {
           <p className="font-display text-[2.1rem] leading-[0.79] md:text-[2.75rem]">
             {recap.year}
           </p>
-          <span className="text-[0.506rem] leading-normal font-semibold underline underline-offset-2 opacity-60 md:text-[0.945rem]">
+          <span className="hidden text-[0.506rem] leading-normal font-semibold underline underline-offset-2 opacity-60 md:inline md:text-[0.945rem]">
             VER RECAP
           </span>
         </div>
       </div>
 
       <Image
-        src={recap.frame}
+        src={recap.frameMobile}
         alt=""
         fill
         sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"
         aria-hidden
-        className="pointer-events-none z-10 scale-[1.007]"
+        className="pointer-events-none z-10 origin-center scale-[1.05] object-cover md:hidden"
+      />
+      <Image
+        src={recap.frameDesktop}
+        alt=""
+        fill
+        sizes="(min-width: 768px) 50vw, calc(100vw - 32px)"
+        aria-hidden
+        className="pointer-events-none z-10 hidden scale-[1.007] object-cover md:block"
       />
     </a>
   )
@@ -153,10 +172,10 @@ export function HomeRecap() {
 
             <div
               data-slot="home-recap_grid"
-              className="grid w-full gap-[0.4135rem] md:grid-cols-2"
+              className="grid w-full gap-4 md:grid-cols-2 md:gap-[0.4135rem]"
             >
-              {recaps.map((recap) => (
-                <RecapCard key={recap.year} recap={recap} />
+              {recaps.map((recap, index) => (
+                <RecapCard key={recap.year} recap={recap} index={index} />
               ))}
             </div>
           </div>
