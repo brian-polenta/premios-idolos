@@ -18,6 +18,9 @@ export const homePageType = defineType({
     {name: 'faq', title: 'Preguntas frecuentes'},
     {name: 'seo', title: 'SEO'},
   ],
+  preview: {
+    prepare: () => ({title: 'Home'}),
+  },
   fields: [
     defineField({
       name: 'hero', title: 'Hero', type: 'object', group: 'hero', fields: [
