@@ -1,6 +1,7 @@
 "use client"
 
 import { type ReactNode, useEffect } from "react"
+import { usePathname } from "next/navigation"
 
 import { gsap } from "gsap"
 import Lenis from "lenis"
@@ -9,7 +10,12 @@ import { CharacterRevealProvider } from "@/components/providers/character-reveal
 import { ScrollEffectsProvider } from "@/components/providers/scroll-effects-provider"
 
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+  const isStudio = pathname.startsWith("/studio")
+
   useEffect(() => {
+    if (isStudio) return
+
     const mediaQuery = window.matchMedia(
       "(min-width: 48rem) and (prefers-reduced-motion: no-preference)"
     )
@@ -53,7 +59,9 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       mediaQuery.removeEventListener("change", handleChange)
       stop()
     }
-  }, [])
+  }, [isStudio])
+
+  if (isStudio) return <>{children}</>
 
   return (
     <>
