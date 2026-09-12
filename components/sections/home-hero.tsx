@@ -4,14 +4,19 @@ import { BrandLogo } from "@/components/brand/brand-logo"
 import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
-import { Button } from "@/components/ui/button"
+import {buttonVariants} from '@/components/ui/button'
+import type {HomePage, SocialLink} from '@/lib/home-content'
 
 const socialChannels = [
   { name: "Instagram", icon: "/hero/instagram.svg" },
   { name: "TikTok", icon: "/hero/tiktok.svg" },
 ] as const
 
-function HeroHeader() {
+function socialIcon(label: string) {
+  return label.toLowerCase() === 'tiktok' ? '/hero/tiktok.svg' : '/hero/instagram.svg'
+}
+
+function HeroHeader({content, socials}: {content: HomePage['hero']; socials: SocialLink[]}) {
   return (
     <header
       data-slot="home-hero_header"
@@ -26,12 +31,12 @@ function HeroHeader() {
             data-hero-load="header"
             className="flex flex-col text-[0.5625rem] leading-normal font-semibold text-brand-petal/60 uppercase md:flex-row md:items-center md:gap-3.5 md:text-[0.6875rem]"
           >
-            <span>Argentina</span>
+            <span>{content.country}</span>
             <span
               aria-hidden
               className="hidden h-2.5 w-px bg-brand-petal/45 md:block"
             />
-            <span>2026</span>
+            <span>{content.year}</span>
           </p>
 
           <div
@@ -52,16 +57,16 @@ function HeroHeader() {
               className="flex items-center gap-2.5"
               aria-label="Redes sociales"
             >
-              {socialChannels.map((channel) => (
+              {(socials.length ? socials : socialChannels.map(channel => ({label: channel.name, href: '#'}))).map((channel) => (
                 <a
-                  key={channel.name}
-                  href="#"
-                  title={channel.name}
-                  aria-label={channel.name}
+                  key={channel.label}
+                  href={channel.href}
+                  title={channel.label}
+                  aria-label={channel.label}
                   className="group grid size-6 place-items-center rounded-pill border border-brand-petal/35 transition-colors duration-300 hover:border-brand-blush hover:bg-brand-blush md:size-7"
                 >
                   <Image
-                    src={channel.icon}
+                    src={socialIcon(channel.label)}
                     alt=""
                     width={12}
                     height={12}
@@ -78,7 +83,7 @@ function HeroHeader() {
   )
 }
 
-function HeroCountdown() {
+function HeroCountdown({content}: {content: HomePage['hero']}) {
   return (
     <div
       data-slot="home-hero_countdown"
@@ -96,20 +101,17 @@ function HeroCountdown() {
       />
       <div className="absolute inset-x-0 top-12 flex flex-col items-center gap-[0.1875rem] text-center">
         <p className="font-serif text-[1.26125rem] leading-normal text-brand-paper/90">
-          Quedan 6 días
+          {content.countdownText}
         </p>
         <p className="text-[0.625rem] leading-normal font-semibold text-brand-blush uppercase">
-          Postulaciones abiertas
+          {content.countdownLabel}
         </p>
       </div>
     </div>
   )
 }
 
-function HeroHeading() {
-  const accentClass =
-    "relative inline-block font-accent text-[1.17em] leading-[0] font-normal md:text-[1em]"
-
+function HeroHeading({title}: {title: string}) {
   return (
     <h1
       id="hero-heading"
@@ -117,37 +119,15 @@ function HeroHeading() {
       data-char-reveal
       data-char-reveal-load
       data-page-load-at="0.32"
-      aria-label="Los premios a los creadores que mueven al país"
+      aria-label={title}
       className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >
-      <span aria-hidden className="md:hidden">
-        <span className="block whitespace-nowrap">
-          <span className={accentClass}>L</span>os premios a
-        </span>
-        <span className="block whitespace-nowrap">
-          los cread<span className={accentClass}>O</span>res
-        </span>
-        <span className="block whitespace-nowrap">que mueven al</span>
-        <span className="block whitespace-nowrap">
-          <span className={accentClass}>P</span>ais
-        </span>
-      </span>
-      <span aria-hidden className="hidden md:block">
-        <span className="block whitespace-nowrap">
-          <span className={accentClass}>L</span>os premios a los
-        </span>
-        <span className="block whitespace-nowrap">
-          cread<span className={accentClass}>O</span>res que
-        </span>
-        <span className="block whitespace-nowrap">
-          mueven al <span className={accentClass}>P</span>ais
-        </span>
-      </span>
+      {title}
     </h1>
   )
 }
 
-export function HomeHero() {
+export function HomeHero({content, socials}: {content: HomePage['hero']; socials: SocialLink[]}) {
   return (
     <Section
       id="inicio"
@@ -167,7 +147,7 @@ export function HomeHero() {
         aria-hidden
         tabIndex={-1}
       >
-        <source src="/media/hero.mp4" type="video/mp4" />
+        <source src={content.videoUrl ?? '/media/hero.mp4'} type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-brand-charcoal/45" aria-hidden />
@@ -176,7 +156,7 @@ export function HomeHero() {
         aria-hidden
       />
 
-      <HeroHeader />
+      <HeroHeader content={content} socials={socials} />
 
       <PageGutter className="relative z-10 flex min-h-[100dvh] items-center px-[0.65625rem] pt-20 pb-28 md:items-end md:px-page md:pt-0 md:pb-[6.25rem]">
         <Container
@@ -187,25 +167,22 @@ export function HomeHero() {
             data-slot="home-hero_content"
             className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center md:translate-y-0 md:gap-[1.125rem]"
           >
-            <HeroCountdown />
+            <HeroCountdown content={content} />
 
             <div className="flex w-full flex-col items-center gap-6">
               <div className="flex w-full flex-col items-center gap-3">
-                <HeroHeading />
+                <HeroHeading title={content.title} />
                 <p
                   data-line-reveal
                   data-line-reveal-load
                   data-page-load-at="1.75"
                   className="max-w-[21.0625rem] text-[1.0625rem] leading-normal text-brand-paper/90"
                 >
-                  ¡Nominá a tus favoritos en cada categoría y el jurado corona a
-                  los ganadores!
+                  {content.description}
                 </p>
               </div>
 
-              <Button variant="cta" data-hero-load="cta" className="text-xl">
-                Postular a mis ídolos
-              </Button>
+              <a href={content.cta.href} data-hero-load="cta" className={buttonVariants({variant: 'cta', className: 'text-xl'})}>{content.cta.label}</a>
             </div>
           </div>
         </Container>

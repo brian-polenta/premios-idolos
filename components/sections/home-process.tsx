@@ -5,32 +5,9 @@ import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
 import { buttonVariants } from "@/components/ui/button"
+import type {HomePage} from '@/lib/home-content'
 
-const steps = [
-  {
-    number: "01",
-    eyebrow: "LA COMUNIDAD PROPONE",
-    title: "Postulás",
-    description:
-      "Escribí el @ de tus creadores favoritos en cada categoría, vos decidís quién merece estar.",
-  },
-  {
-    number: "02",
-    eyebrow: "EL TALENTO SE ENCUENTRA",
-    title: "Se arman los finalistas",
-    description:
-      "El jurado evalúa las postulaciones y elige a los finalistas de cada categoría.",
-  },
-  {
-    number: "03",
-    eyebrow: "LLEGA EL MOMENTO DE ELEGIR",
-    title: "Votás",
-    description:
-      "El público define tres categorías y el jurado el resto. Un voto por persona en cada categoría.",
-  },
-] as const
-
-function ProcessCallToAction() {
+function ProcessCallToAction({content}: {content: HomePage['process']}) {
   return (
     <div className="flex flex-col items-center gap-5 text-center lg:items-start lg:text-left">
       <p
@@ -38,21 +15,21 @@ function ProcessCallToAction() {
         data-line-reveal-delay="0.2"
         className="max-w-[18.3125rem] text-[1.0625rem] leading-normal text-brand-paper/90"
       >
-        De ese creador que no dejás de mirar a un lugar entre los grandes.
+        {content.description}
       </p>
       <a
-        href="#categorias"
+        href={content.cta.href}
         data-fade-reveal
         data-fade-reveal-delay="0.2"
         className={buttonVariants({ variant: "cta" })}
       >
-        Postular a mis ídolos
+        {content.cta.label}
       </a>
     </div>
   )
 }
 
-export function HomeProcess() {
+export function HomeProcess({content}: {content: HomePage['process']}) {
   return (
     <Section
       id="proceso"
@@ -112,17 +89,16 @@ export function HomeProcess() {
           >
             <div className="flex flex-col items-center gap-12 lg:items-start lg:justify-between">
               <EditorialHeading
-                eyebrow="El proceso"
+                eyebrow={content.eyebrow}
                 eyebrowTone="blush"
                 align="center"
                 size="large"
                 className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
               >
-                <span className="font-accent">T</span>odo empieza con{" "}
-                <span className="font-accent">V</span>os
+                {content.title}
               </EditorialHeading>
               <div className="hidden lg:block">
-                <ProcessCallToAction />
+                <ProcessCallToAction content={content} />
               </div>
             </div>
 
@@ -131,7 +107,7 @@ export function HomeProcess() {
               data-process-cards
               className="border-t border-brand-petal/30 lg:border-t-0"
             >
-              {steps.map((step) => (
+              {content.steps.map((step) => (
                 <article
                   key={step.number}
                   data-slot="process-step"
@@ -157,7 +133,7 @@ export function HomeProcess() {
             </div>
 
             <div className="lg:hidden">
-              <ProcessCallToAction />
+              <ProcessCallToAction content={content} />
             </div>
           </div>
         </Container>

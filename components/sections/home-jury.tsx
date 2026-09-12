@@ -7,9 +7,9 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import type { Judge } from "@/lib/home-content"
+import type {HomePage, Judge} from '@/lib/home-content'
 
-function TextLink({ children }: { children: string }) {
+function TextLink({children}: {children: string}) {
   return (
     <a
       href="#jurados-listado"
@@ -21,7 +21,7 @@ function TextLink({ children }: { children: string }) {
   )
 }
 
-function JuryFeature() {
+function JuryFeature({content}: {content: HomePage['jury']}) {
   return (
     <div
       data-slot="home-jury_feature"
@@ -30,7 +30,7 @@ function JuryFeature() {
       className="relative h-[22.6875rem] overflow-hidden lg:aspect-[1.2/1] lg:h-auto"
     >
       <Image
-        src="/images/jury/feature.jpg"
+        src={content.featureImageUrl ?? '/images/jury/feature.jpg'}
         alt="Representación visual del jurado de Premios Ídolo"
         fill
         sizes="(min-width: 1024px) 53vw, calc(100vw - 32px)"
@@ -189,7 +189,7 @@ function JuryMarqueeRow({
   )
 }
 
-export function HomeJury({ judges }: { judges: Judge[] }) {
+export function HomeJury({judges, content}: {judges: Judge[]; content: HomePage['jury']}) {
   const [showAllJudges, setShowAllJudges] = useState(false)
   const initiallyVisible = 6
   const initialJudges = judges.slice(0, initiallyVisible)
@@ -251,29 +251,20 @@ export function HomeJury({ judges }: { judges: Judge[] }) {
           >
             <div className="grid gap-14 lg:grid-cols-[32.8125rem_1fr] lg:gap-[4.5rem]">
               <div className="flex flex-col gap-4 lg:justify-between">
-                <EditorialHeading eyebrow="Quienes eligen">
-                  <span className="block">
-                    <span className="font-accent">U</span>na mirada que
-                  </span>
-                  <span className="block">
-                    reconoce el <span className="font-accent">T</span>alento
-                  </span>
-                </EditorialHeading>
+                <EditorialHeading eyebrow={content.eyebrow}>{content.title}</EditorialHeading>
                 <div className="flex flex-col items-start gap-5">
                   <p
                     data-line-reveal
                     className="max-w-[25.9375rem] text-[1.0625rem] leading-normal"
                   >
-                    Referentes de la comunicación, la cultura y las marcas. Un
-                    jurado que reúne distintas miradas para reconocer a los
-                    creadores que dejan huella.
+                    {content.description}
                   </p>
                   <div data-fade-reveal data-fade-reveal-duration="1.6">
-                    <TextLink>Conocer al Jurado</TextLink>
+                    <TextLink>{content.linkLabel}</TextLink>
                   </div>
                 </div>
               </div>
-              <JuryFeature />
+              <JuryFeature content={content} />
             </div>
 
             <div

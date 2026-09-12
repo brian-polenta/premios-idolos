@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import type { Category } from "@/lib/home-content"
+import type {Category, HomePage} from '@/lib/home-content'
 
 const fallbackCategories = [
   "Ídolo Mascotas",
@@ -22,7 +22,7 @@ function CategoryPill({ children }: { children: string }) {
   )
 }
 
-export function HomeCategories({ categories }: { categories: Category[] }) {
+export function HomeCategories({categories, content}: {categories: Category[]; content: HomePage['categories']}) {
   const names = categories.length
     ? categories.map((category) => category.name)
     : fallbackCategories
@@ -43,16 +43,11 @@ export function HomeCategories({ categories }: { categories: Category[] }) {
             className="flex flex-col items-center gap-12 md:gap-[4.5rem]"
           >
             <EditorialHeading
-              eyebrow="Las categorías"
+              eyebrow={content.eyebrow}
               align="center"
               className="gap-4 md:gap-7 [&_h2]:max-w-[38.3125rem]"
             >
-              <span className="block">
-                <span className="font-accent">C</span>ada universo
-              </span>
-              <span className="block">
-                tiene a su <span className="font-accent">Í</span>dolo
-              </span>
+              {content.title}
             </EditorialHeading>
 
             <div

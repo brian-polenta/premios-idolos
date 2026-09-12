@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { Eyebrow } from "@/components/typography/eyebrow"
+import type {HomePage} from '@/lib/home-content'
 
 const recaps = [
   {
@@ -28,10 +29,7 @@ const recaps = [
   },
 ] as const
 
-function RecapHeading() {
-  const accentClass =
-    "relative inline-block font-accent text-[1.12em] leading-[0] font-normal"
-
+function RecapHeading({content}: {content: HomePage['recap']}) {
   return (
     <div
       data-slot="home-recap_heading-wrapper"
@@ -41,37 +39,16 @@ function RecapHeading() {
         lineClassName="w-[3.8125rem]"
         className="gap-[0.6875rem] leading-normal"
       >
-        La antesala
+        {content.eyebrow}
       </Eyebrow>
 
       <h2
         data-slot="home-recap_heading"
         data-char-reveal
-        aria-label="Hicimos historia en dos grandes pantallas argentinas"
+        aria-label={content.title}
         className="type-display w-full font-display tracking-[-0.02em]"
       >
-        <span aria-hidden className="md:hidden">
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>H</span>icimos historia en
-          </span>
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>D</span>os grandes pantallas
-          </span>
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>A</span>rgentinas
-          </span>
-        </span>
-        <span aria-hidden className="hidden md:block">
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>H</span>icimos historia en
-          </span>
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>D</span>os grandes pantallas
-          </span>
-          <span className="block whitespace-nowrap">
-            <span className={accentClass}>A</span>rgentinas
-          </span>
-        </span>
+        {content.title}
       </h2>
     </div>
   )
@@ -154,7 +131,7 @@ function RecapCard({
   )
 }
 
-export function HomeRecap() {
+export function HomeRecap({content}: {content: HomePage['recap']}) {
   return (
     <Section
       id="recap"
@@ -168,7 +145,7 @@ export function HomeRecap() {
             data-slot="home-recap_component"
             className="flex flex-col items-center gap-12 py-16 md:gap-[4.5rem] md:py-[5.5rem]"
           >
-            <RecapHeading />
+            <RecapHeading content={content} />
 
             <div
               data-slot="home-recap_grid"

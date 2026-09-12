@@ -7,24 +7,24 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import type { Faq } from "@/lib/home-content"
+import type {Faq, HomePage, SiteSettings, SocialLink} from '@/lib/home-content'
 
 const socials = [
   { name: "Instagram", icon: "/icons/instagram-dark.svg" },
   { name: "TikTok", icon: "/icons/tiktok-dark.svg" },
 ] as const
 
-function SocialLinks({ showLabel = false }: { showLabel?: boolean }) {
+function SocialLinks({showLabel = false, links}: {showLabel?: boolean; links: SocialLink[]}) {
   return (
     <div className="flex flex-col items-start gap-3.5">
       {showLabel && (
         <p className="text-base font-semibold uppercase">Seguinos</p>
       )}
       <div className="flex gap-[0.6875rem]" aria-label="Redes sociales">
-        {socials.map((social) => (
+        {(links.length ? links.map(link => ({name: link.label, href: link.href, icon: `/icons/${link.label.toLowerCase()}-dark.svg`})) : socials.map(social => ({...social, href: '#'}))).map((social) => (
           <a
             key={social.name}
-            href="#"
+            href={social.href}
             title={social.name}
             aria-label={social.name}
             className="group grid size-[2.0675rem] place-items-center rounded-pill border-[1.375px] border-brand-ink transition-colors duration-300 hover:bg-brand-ink"
@@ -93,7 +93,7 @@ function FaqList({ faqs }: { faqs: Faq[] }) {
   )
 }
 
-export function HomeFaqFooter({ faqs }: { faqs: Faq[] }) {
+export function HomeFaqFooter({faqs, content, settings}: {faqs: Faq[]; content: HomePage['faq']; settings: SiteSettings}) {
   return (
     <Section
       id="preguntas"
@@ -110,29 +110,20 @@ export function HomeFaqFooter({ faqs }: { faqs: Faq[] }) {
             <div className="grid gap-14 lg:grid-cols-[clamp(32.8125rem,42vw,40rem)_minmax(0,1fr)] lg:gap-[4.5rem]">
               <div className="flex flex-col items-center gap-12 text-center lg:items-start lg:justify-between lg:text-left">
                 <EditorialHeading
-                  eyebrow="Preguntas Frecuentes"
+                  eyebrow={content.eyebrow}
                   align="center"
                   size="large"
                   className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
                 >
-                  <span className="block">
-                    <span className="font-accent">P</span>reguntas
-                  </span>
-                  <span className="block lg:hidden">sobre el</span>
-                  <span className="block lg:hidden">
-                    <span className="font-accent">E</span>vento
-                  </span>
-                  <span className="hidden whitespace-nowrap lg:block">
-                    sobre el <span className="font-accent">E</span>vento
-                  </span>
+                  {content.title}
                 </EditorialHeading>
                 <div className="hidden lg:block">
-                  <SocialLinks showLabel />
+                  <SocialLinks showLabel links={settings.socialLinks} />
                 </div>
               </div>
               <div className="flex flex-col gap-14">
                 <div className="self-center lg:hidden">
-                  <SocialLinks />
+                  <SocialLinks links={settings.socialLinks} />
                 </div>
                 <FaqList faqs={faqs} />
               </div>
@@ -150,8 +141,8 @@ export function HomeFaqFooter({ faqs }: { faqs: Faq[] }) {
               </div>
               <div className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 border-t border-brand-ink/30 pt-3 text-sm leading-normal font-semibold uppercase lg:grid-cols-3 lg:text-xs">
                 <div className="flex flex-col gap-1">
-                  <span>2026 Premios Ídolo Argentina</span>
-                  <a href="#">Bases y condiciones</a>
+                  <span>{settings.footer.copyright}</span>
+                  <a href={settings.footer.termsHref}>{settings.footer.termsLabel}</a>
                 </div>
                 <span className="justify-self-end lg:justify-self-center lg:text-center">
                   <span className="flex items-center gap-1 lg:hidden">
@@ -162,18 +153,18 @@ export function HomeFaqFooter({ faqs }: { faqs: Faq[] }) {
                     28/08
                   </span>
                   <span className="hidden lg:inline">
-                    28 de octubre — Argentina
+                    {settings.footer.eventDate}
                   </span>
                 </span>
                 <span className="col-span-2 lg:col-span-1 lg:text-right">
-                  Hecho por{" "}
+                  Hecho por{' '}
                   <a
-                    href="https://programon.co"
+                    href={settings.footer.creditHref}
                     target="_blank"
                     rel="noreferrer"
                     className="underline underline-offset-2 transition-opacity hover:opacity-60"
                   >
-                    Programon
+                    {settings.footer.creditLabel}
                   </a>
                 </span>
               </div>
