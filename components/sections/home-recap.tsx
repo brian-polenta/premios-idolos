@@ -30,6 +30,14 @@ const recaps = [
 ] as const
 
 function RecapHeading({content}: {content: HomePage['recap']}) {
+  const titleWords = content.title.trim().split(/\s+/)
+  const wordsPerLine = Math.ceil(titleWords.length / 3)
+  const titleLines = Array.from({length: 3}, (_, index) =>
+    titleWords.slice(index * wordsPerLine, (index + 1) * wordsPerLine).join(' ')
+  ).filter(Boolean)
+  const accentClass =
+    "relative inline-block font-accent text-[1.12em] leading-[0] font-normal"
+
   return (
     <div
       data-slot="home-recap_heading-wrapper"
@@ -48,7 +56,12 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
         aria-label={content.title}
         className="type-display w-full font-display tracking-[-0.02em]"
       >
-        {content.title}
+        {titleLines.map((line) => (
+          <span key={line} className="block whitespace-nowrap">
+            <span className={accentClass}>{line.charAt(0)}</span>
+            {line.slice(1)}
+          </span>
+        ))}
       </h2>
     </div>
   )
