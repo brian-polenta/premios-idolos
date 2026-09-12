@@ -12,9 +12,12 @@ import { ScrollEffectsProvider } from "@/components/providers/scroll-effects-pro
 export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const isStudio = pathname.startsWith("/studio")
+  const isPresentationFrame =
+    typeof window !== "undefined" && window.self !== window.top
+  const disableSiteEffects = isStudio || isPresentationFrame
 
   useEffect(() => {
-    if (isStudio) return
+    if (disableSiteEffects) return
 
     const mediaQuery = window.matchMedia(
       "(min-width: 48rem) and (prefers-reduced-motion: no-preference)"
@@ -59,9 +62,9 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       mediaQuery.removeEventListener("change", handleChange)
       stop()
     }
-  }, [isStudio])
+  }, [disableSiteEffects])
 
-  if (isStudio) return <>{children}</>
+  if (disableSiteEffects) return <>{children}</>
 
   return (
     <>
