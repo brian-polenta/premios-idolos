@@ -7,6 +7,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
+import { AccentInitials } from "@/components/typography/accent-initials"
 import type {Faq, HomePage, SiteSettings, SocialLink} from '@/lib/home-content'
 
 const socials = [
@@ -113,9 +114,9 @@ export function HomeFaqFooter({faqs, content, settings}: {faqs: Faq[]; content: 
                   eyebrow={content.eyebrow}
                   align="center"
                   size="large"
-                  className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
+                  className="[&_h2]:max-w-[27rem] lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
                 >
-                  {content.title}
+                  <AccentInitials text={content.title} wordIndexes={[0, 3]} />
                 </EditorialHeading>
                 <div className="hidden lg:block">
                   <SocialLinks showLabel links={settings.socialLinks} />
