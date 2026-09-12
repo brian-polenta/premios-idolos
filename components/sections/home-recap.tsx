@@ -4,7 +4,6 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { Eyebrow } from "@/components/typography/eyebrow"
-import { AccentInitials } from "@/components/typography/accent-initials"
 import type {HomePage} from '@/lib/home-content'
 
 const recaps = [
@@ -49,7 +48,7 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
         aria-label={content.title}
         className="type-display w-full max-w-[52rem] font-display tracking-[-0.02em]"
       >
-        <AccentInitials text={content.title} wordIndexes={[0, 3, 6]} />
+        {content.title}
       </h2>
     </div>
   )
