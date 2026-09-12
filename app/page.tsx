@@ -9,6 +9,10 @@ import { HomeProcess } from "@/components/sections/home-process"
 import { HomeRecap } from "@/components/sections/home-recap"
 import { getHomeContent } from "@/lib/home-content"
 
+// The Presentation Tool enables Draft Mode per request. This route cannot be
+// statically generated or the visual editing overlay would never mount.
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata(): Promise<Metadata> {
   const {page, settings} = await getHomeContent({stega: false})
   const seo = {...settings.seo, ...page.seo}
