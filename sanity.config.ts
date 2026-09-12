@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [
     structureTool({structure}),
     presentationTool({
-      title: 'Ver Home',
+      title: 'Home',
       previewUrl: {
         origin: 'https://premios-idolos.vercel.app',
         previewMode: {
