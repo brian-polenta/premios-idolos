@@ -1,6 +1,6 @@
 "use client"
 
-import { type ReactNode, useEffect } from "react"
+import { type ReactNode, useEffect, useLayoutEffect } from "react"
 import { usePathname } from "next/navigation"
 
 import { gsap } from "gsap"
@@ -15,6 +15,20 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   const isPresentationFrame =
     typeof window !== "undefined" && window.self !== window.top
   const disableSiteEffects = isStudio || isPresentationFrame
+
+  useLayoutEffect(() => {
+    if (!disableSiteEffects) return
+
+    const revealTargets = document.querySelectorAll<HTMLElement>(
+      "[data-char-reveal], [data-line-reveal], [data-eyebrow-reveal], [data-fade-reveal], [data-process-card-reveal], [data-faq-item-reveal], [data-hero-load]"
+    )
+
+    revealTargets.forEach((target) => {
+      target.style.visibility = "visible"
+      target.style.opacity = "1"
+      target.style.transform = ""
+    })
+  }, [disableSiteEffects])
 
   useEffect(() => {
     if (disableSiteEffects) return
