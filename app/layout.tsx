@@ -1,10 +1,13 @@
 import localFont from "next/font/local"
 import type { Metadata } from "next"
+import { draftMode } from "next/headers"
+import { VisualEditing } from "next-sanity/visual-editing"
 
 import "./globals.css"
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import { SanityLive } from "@/sanity/lib/live"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://premios-idolos.vercel.app"),
@@ -102,7 +105,7 @@ const meaCulpa = localFont({
   display: "swap",
 })
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -131,6 +134,8 @@ export default function RootLayout({
         <ThemeProvider>
           <SmoothScrollProvider>{children}</SmoothScrollProvider>
         </ThemeProvider>
+        <SanityLive />
+        {(await draftMode()).isEnabled && <VisualEditing />}
       </body>
     </html>
   )

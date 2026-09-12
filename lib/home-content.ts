@@ -1,4 +1,4 @@
-import {client} from '@/sanity/lib/client'
+import {sanityFetch} from '@/sanity/lib/live'
 
 export type Category = {name: string; slug: string; order: number; isActive?: boolean}
 export type Faq = {question: string; answer: string; order: number}
@@ -16,6 +16,7 @@ export type HomePage = {
 }
 export type SiteSettings = {socialLinks: SocialLink[]; footer: {copyright: string; termsLabel: string; termsHref: string; eventDate: string; creditLabel: string; creditHref: string}; seo: {title: string; description: string; ogImageUrl?: string}}
 export type HomeContent = {categories: Category[]; faqs: Faq[]; judges: Judge[]; page: HomePage; settings: SiteSettings}
+type HomeContentQueryResult = Omit<HomeContent, 'page' | 'settings'> & {page?: Partial<HomePage>; settings?: Partial<SiteSettings>}
 
 const defaultHomePage: HomePage = {
   hero: {country: 'Argentina', year: '2026', countdownText: 'Quedan 6 días', countdownLabel: 'Postulaciones abiertas', title: 'Los premios a los creadores que mueven al país', description: '¡Nominá a tus favoritos en cada categoría y el jurado corona a los ganadores!', cta: {label: 'Postular a mis ídolos', href: '#categorias'}},
@@ -40,7 +41,11 @@ function mergePage(value?: Partial<HomePage>): HomePage {
   return {...defaultHomePage, ...value, hero: {...defaultHomePage.hero, ...value?.hero, cta: {...defaultHomePage.hero.cta, ...value?.hero?.cta}}, recap: {...defaultHomePage.recap, ...value?.recap}, process: {...defaultHomePage.process, ...value?.process, cta: {...defaultHomePage.process.cta, ...value?.process?.cta}, steps: value?.process?.steps?.length ? value.process.steps : defaultHomePage.process.steps}, categories: {...defaultHomePage.categories, ...value?.categories}, jury: {...defaultHomePage.jury, ...value?.jury}, faq: {...defaultHomePage.faq, ...value?.faq}, seo: {...defaultHomePage.seo, ...value?.seo}}
 }
 
-export async function getHomeContent(): Promise<HomeContent> {
-  const content = await client.fetch<Omit<HomeContent, 'page' | 'settings'> & {page?: Partial<HomePage>; settings?: Partial<SiteSettings>}>(homeContentQuery, {}, {next: {revalidate: 60}})
+export async function getHomeContent(options?: {stega?: boolean}): Promise<HomeContent> {
+  const {data} = await sanityFetch({
+    query: homeContentQuery,
+    stega: options?.stega,
+  })
+  const content = data as HomeContentQueryResult
   return {...content, page: mergePage(content.page), settings: {...defaultSettings, ...content.settings, footer: {...defaultSettings.footer, ...content.settings?.footer}, seo: {...defaultSettings.seo, ...content.settings?.seo}}}
 }

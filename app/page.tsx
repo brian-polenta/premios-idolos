@@ -10,7 +10,7 @@ import { HomeRecap } from "@/components/sections/home-recap"
 import { getHomeContent } from "@/lib/home-content"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const {page, settings} = await getHomeContent()
+  const {page, settings} = await getHomeContent({stega: false})
   const seo = {...settings.seo, ...page.seo}
 
   return {
