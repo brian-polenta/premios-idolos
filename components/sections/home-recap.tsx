@@ -48,7 +48,7 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
         data-char-reveal
         data-char-reveal-preserve
         aria-label={content.title}
-        className="type-display w-full max-w-[52rem] font-display tracking-[-0.02em]"
+        className="type-display w-full max-w-[46rem] font-display tracking-[-0.02em]"
       >
         <AccentUppercase
           text={content.title}
