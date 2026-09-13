@@ -5,6 +5,15 @@ const ctaFields = [
   defineField({name: 'href', title: 'Link', type: 'string'}),
 ]
 
+const editorialTitle = () =>
+  defineField({
+    name: 'title',
+    title: 'Título',
+    type: 'text',
+    rows: 3,
+    description: 'Usá Enter para definir cada línea. Las letras en mayúscula se muestran en Mea Culpa.',
+  })
+
 export const homePageType = defineType({
   name: 'homePage',
   title: 'Home',
@@ -28,7 +37,7 @@ export const homePageType = defineType({
         defineField({name: 'year', title: 'Año', type: 'string'}),
         defineField({name: 'countdownText', title: 'Texto de cuenta regresiva', type: 'string'}),
         defineField({name: 'countdownLabel', title: 'Estado', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
         defineField({name: 'description', title: 'Descripción', type: 'text', rows: 3}),
         defineField({name: 'video', title: 'Video de fondo', type: 'file', options: {accept: 'video/*'}}),
         defineField({name: 'cta', title: 'Botón', type: 'object', fields: ctaFields}),
@@ -37,7 +46,7 @@ export const homePageType = defineType({
     defineField({
       name: 'recap', title: 'La antesala', type: 'object', group: 'recap', fields: [
         defineField({name: 'eyebrow', title: 'Antetítulo', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
         defineField({name: 'items', title: 'Recaps', type: 'array', of: [defineArrayMember({type: 'object', fields: [
           defineField({name: 'year', title: 'Año', type: 'string'}),
           defineField({name: 'venue', title: 'Medio', type: 'string'}),
@@ -50,7 +59,7 @@ export const homePageType = defineType({
     defineField({
       name: 'process', title: 'El proceso', type: 'object', group: 'process', fields: [
         defineField({name: 'eyebrow', title: 'Antetítulo', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
         defineField({name: 'description', title: 'Texto de apoyo', type: 'text', rows: 3}),
         defineField({name: 'cta', title: 'Botón', type: 'object', fields: ctaFields}),
         defineField({name: 'steps', title: 'Pasos', type: 'array', of: [defineArrayMember({type: 'object', fields: [
@@ -64,13 +73,13 @@ export const homePageType = defineType({
     defineField({
       name: 'categories', title: 'Categorías', type: 'object', group: 'categories', fields: [
         defineField({name: 'eyebrow', title: 'Antetítulo', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
       ],
     }),
     defineField({
       name: 'jury', title: 'Jurados', type: 'object', group: 'jury', fields: [
         defineField({name: 'eyebrow', title: 'Antetítulo', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
         defineField({name: 'description', title: 'Descripción', type: 'text', rows: 3}),
         defineField({name: 'linkLabel', title: 'Texto del link', type: 'string'}),
         defineField({name: 'featureImage', title: 'Imagen destacada', type: 'image', options: {hotspot: true}}),
@@ -79,7 +88,7 @@ export const homePageType = defineType({
     defineField({
       name: 'faq', title: 'Preguntas frecuentes', type: 'object', group: 'faq', fields: [
         defineField({name: 'eyebrow', title: 'Antetítulo', type: 'string'}),
-        defineField({name: 'title', title: 'Título', type: 'string'}),
+        editorialTitle(),
       ],
     }),
     defineField({
