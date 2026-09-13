@@ -117,9 +117,6 @@ function HeroHeading({title}: {title: string}) {
     <h1
       id="hero-heading"
       data-slot="home-hero_heading"
-      data-char-reveal
-      data-char-reveal-load
-      data-page-load-at="0.32"
       aria-label={title}
       className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >

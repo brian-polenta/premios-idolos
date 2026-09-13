@@ -41,7 +41,6 @@ export function EditorialHeading({
         {eyebrow}
       </Eyebrow>
       <h2
-        data-char-reveal
         className={cn(
           "font-display tracking-[-0.02em]",
           size === "large" ? "type-display-large" : "type-display"
