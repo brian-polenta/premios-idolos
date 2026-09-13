@@ -4,6 +4,7 @@ import { BrandLogo } from "@/components/brand/brand-logo"
 import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
+import { AccentUppercase } from "@/components/typography/accent-uppercase"
 import {buttonVariants} from '@/components/ui/button'
 import type {HomePage, SocialLink} from '@/lib/home-content'
 
@@ -122,7 +123,7 @@ function HeroHeading({title}: {title: string}) {
       aria-label={title}
       className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
     >
-      {title}
+      <AccentUppercase text={title} />
     </h1>
   )
 }

@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { Eyebrow } from "@/components/typography/eyebrow"
+import { AccentUppercase } from "@/components/typography/accent-uppercase"
 import type {HomePage} from '@/lib/home-content'
 
 const recaps = [
@@ -48,7 +49,10 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
         aria-label={content.title}
         className="type-display w-full max-w-[52rem] font-display tracking-[-0.02em]"
       >
-        {content.title}
+        <AccentUppercase
+          text={content.title}
+          className="relative inline-block font-accent text-[1.12em] leading-[0] font-normal"
+        />
       </h2>
     </div>
   )
