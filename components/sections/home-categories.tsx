@@ -46,7 +46,7 @@ export function HomeCategories({categories, content}: {categories: Category[]; c
             <EditorialHeading
               eyebrow={content.eyebrow}
               align="center"
-              className="gap-4 md:gap-7 [&_h2]:max-w-[38.3125rem]"
+              className="gap-4 md:gap-7"
             >
               <AccentUppercase text={content.title} />
             </EditorialHeading>

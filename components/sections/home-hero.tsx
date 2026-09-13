@@ -122,7 +122,7 @@ function HeroHeading({title}: {title: string}) {
       data-char-reveal-load
       data-page-load-at="0.32"
       aria-label={title}
-      className="font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:w-[41.4375rem] md:text-[6.4497rem]"
+      className="w-full font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:text-[6.4497rem]"
     >
       <AccentUppercase text={title} />
     </h1>
@@ -161,10 +161,7 @@ export function HomeHero({content, socials}: {content: HomePage['hero']; socials
       <HeroHeader content={content} socials={socials} />
 
       <PageGutter className="relative z-10 flex min-h-[100dvh] items-center px-[0.65625rem] pt-20 pb-28 md:items-end md:px-page md:pt-0 md:pb-[6.25rem]">
-        <Container
-          size="full"
-          className="max-w-[23.8125rem] md:max-w-[46.4375rem]"
-        >
+        <Container size="full">
           <div
             data-slot="home-hero_content"
             className="flex translate-y-4 flex-col items-center gap-[1.5625rem] text-center md:translate-y-0 md:gap-[1.125rem]"
