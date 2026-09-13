@@ -1,5 +1,3 @@
-import {Fragment} from 'react'
-
 const uppercaseLetter = /[A-ZÁÉÍÓÚÜÑ]/
 
 type AccentUppercaseProps = {
@@ -12,13 +10,13 @@ type AccentUppercaseProps = {
  * cue from the CMS: render only that letter in Mea Culpa.
  */
 export function AccentUppercase({text, className = 'font-accent'}: AccentUppercaseProps) {
-  return Array.from(text).map((character, index) =>
-    uppercaseLetter.test(character) ? (
-      <span key={`${character}-${index}`} className={className}>
-        {character}
-      </span>
-    ) : (
-      <Fragment key={`${character}-${index}`}>{character}</Fragment>
-    )
-  )
+  return Array.from(text).map((character, index) => (
+    <span
+      key={`${character}-${index}`}
+      data-editorial-character
+      className={uppercaseLetter.test(character) ? className : undefined}
+    >
+      {character}
+    </span>
+  ))
 }

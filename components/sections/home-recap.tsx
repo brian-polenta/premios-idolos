@@ -45,6 +45,8 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
 
       <h2
         data-slot="home-recap_heading"
+        data-char-reveal
+        data-char-reveal-preserve
         aria-label={content.title}
         className="type-display w-full max-w-[52rem] font-display tracking-[-0.02em]"
       >

@@ -54,15 +54,24 @@ export function CharacterRevealProvider() {
           gsap.utils.toArray<HTMLElement>("[data-char-reveal]")
 
         characterTargets.forEach((target) => {
-          const split = new SplitText(target, {
-            charsClass: "char++",
-            tag: "span",
-            type: "chars",
-          })
-          splits.push(split)
+          let characters: Element[]
+
+          if (target.hasAttribute("data-char-reveal-preserve")) {
+            characters = Array.from(
+              target.querySelectorAll("[data-editorial-character]")
+            )
+          } else {
+            const split = new SplitText(target, {
+              charsClass: "char++",
+              tag: "span",
+              type: "chars",
+            })
+            splits.push(split)
+            characters = split.chars
+          }
 
           target.style.visibility = "visible"
-          const visibleCharacters = split.chars.filter(
+          const visibleCharacters = characters.filter(
             (character) => character.getClientRects().length > 0
           )
           gsap.set(visibleCharacters, { autoAlpha: 0 })
