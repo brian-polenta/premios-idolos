@@ -114,7 +114,7 @@ export function HomeFaqFooter({faqs, content, settings}: {faqs: Faq[]; content: 
                   eyebrow={content.eyebrow}
                   align="center"
                   size="large"
-                  className="[&_h2]:max-w-[27rem] lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
+                  className="[&_h2]:max-w-[29rem] [&_h2]:text-[clamp(5.1rem,7.4vw,6.8rem)] lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
                 >
                   <AccentUppercase text={content.title} />
                 </EditorialHeading>
