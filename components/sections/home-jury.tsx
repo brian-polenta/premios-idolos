@@ -70,7 +70,7 @@ function JuryCard({
   return (
     <article
       data-slot="jury-card"
-      className={`group relative flex min-h-[6.25rem] items-start gap-4 px-[6px] py-[1.3125rem] transition-colors duration-500 lg:aspect-square lg:min-h-0 lg:flex-col lg:items-center lg:justify-end lg:border-r lg:px-8 lg:py-6 lg:text-center lg:hover:bg-brand-ink ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
+      className={`group relative flex min-h-[6.25rem] items-start gap-4 px-[6px] py-[1.3125rem] transition-colors duration-500 lg:aspect-square lg:min-h-0 lg:border-r lg:px-8 lg:py-6 lg:text-center lg:hover:bg-brand-ink ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
     >
       {knownPhoto && (
         <Image
@@ -101,20 +101,6 @@ function JuryCard({
             unoptimized
             className="sr-only"
           />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute top-8 left-1/2 z-10 hidden h-7 w-[min(45%,7rem)] -translate-x-1/2 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:block"
-            style={{
-              maskImage: `url(${companyLogoSource})`,
-              maskPosition: "center",
-              maskRepeat: "no-repeat",
-              maskSize: "contain",
-              WebkitMaskImage: `url(${companyLogoSource})`,
-              WebkitMaskPosition: "center",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskSize: "contain",
-            }}
-          />
         </>
       )}
       {!knownPhoto && (
@@ -125,33 +111,53 @@ function JuryCard({
           {judge.name.charAt(0)}
         </div>
       )}
-      <div className="relative z-10 flex flex-col items-start gap-[7px] lg:items-center">
-        {companyLogoSource && judge.companyName && (
-          <span
-            aria-hidden
-            className="pointer-events-none h-[0.875rem] w-[3.6875rem] shrink-0 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:hidden"
-            style={{
-              maskImage: `url(${companyLogoSource})`,
-              maskPosition: "left center",
-              maskRepeat: "no-repeat",
-              maskSize: "contain",
-              WebkitMaskImage: `url(${companyLogoSource})`,
-              WebkitMaskPosition: "left center",
-              WebkitMaskRepeat: "no-repeat",
-              WebkitMaskSize: "contain",
-            }}
-          />
-        )}
-        <h3 className="font-serif text-[1.75rem] leading-[1.05] transition-colors duration-200 group-hover:text-brand-cream lg:min-h-[4.2rem] lg:content-center lg:text-[clamp(2rem,2.3vw,3rem)]">
-          <span className="lg:hidden">{judge.name}</span>
-          <span className="hidden lg:block">{firstName}</span>
-          <span className="hidden lg:block">
-            {remainingName.join(" ") || "\u00a0"}
-          </span>
-        </h3>
-        <p className="text-xs leading-normal font-semibold text-brand-ink/50 uppercase transition-colors duration-200 group-hover:text-brand-cream/70">
-          {judge.position}
-        </p>
+      <div className="relative z-10 flex flex-col items-start gap-[7px] lg:absolute lg:inset-0 lg:flex-col lg:justify-between lg:px-8 lg:py-6">
+        <div className="hidden h-7 w-[min(45%,7rem)] shrink-0 self-center lg:block">
+          {companyLogoSource && judge.companyName && (
+            <span
+              aria-hidden
+              className="pointer-events-none block size-full bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream"
+              style={{
+                maskImage: `url(${companyLogoSource})`,
+                maskPosition: "center",
+                maskRepeat: "no-repeat",
+                maskSize: "contain",
+                WebkitMaskImage: `url(${companyLogoSource})`,
+                WebkitMaskPosition: "center",
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+              }}
+            />
+          )}
+        </div>
+        <div className="flex flex-col items-start gap-[7px] lg:items-center">
+          {companyLogoSource && judge.companyName && (
+            <span
+              aria-hidden
+              className="pointer-events-none h-[0.875rem] w-[3.6875rem] shrink-0 bg-current text-brand-ink transition-colors duration-200 group-hover:text-brand-cream lg:hidden"
+              style={{
+                maskImage: `url(${companyLogoSource})`,
+                maskPosition: "left center",
+                maskRepeat: "no-repeat",
+                maskSize: "contain",
+                WebkitMaskImage: `url(${companyLogoSource})`,
+                WebkitMaskPosition: "left center",
+                WebkitMaskRepeat: "no-repeat",
+                WebkitMaskSize: "contain",
+              }}
+            />
+          )}
+          <h3 className="font-serif text-[1.75rem] leading-[1.05] transition-colors duration-200 group-hover:text-brand-cream lg:min-h-[4.2rem] lg:content-center lg:text-[clamp(2rem,2.3vw,3rem)]">
+            <span className="lg:hidden">{judge.name}</span>
+            <span className="hidden lg:block">{firstName}</span>
+            <span className="hidden lg:block">
+              {remainingName.join(" ") || "\u00a0"}
+            </span>
+          </h3>
+          <p className="text-xs leading-normal font-semibold text-brand-ink/50 uppercase transition-colors duration-200 group-hover:text-brand-cream/70">
+            {judge.position}
+          </p>
+        </div>
       </div>
     </article>
   )
