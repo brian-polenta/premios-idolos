@@ -111,7 +111,7 @@ function JuryCard({
           {judge.name.charAt(0)}
         </div>
       )}
-      <div className="relative z-10 flex flex-col items-start gap-[7px] lg:absolute lg:inset-0 lg:flex-col lg:justify-between lg:px-8 lg:py-6">
+      <div className="relative z-10 flex flex-col items-start gap-[7px] lg:absolute lg:inset-0 lg:flex-col lg:items-center lg:justify-between lg:px-8 lg:py-6">
         <div className="hidden h-7 w-[min(45%,7rem)] shrink-0 self-center lg:block">
           {companyLogoSource && judge.companyName && (
             <span
@@ -130,7 +130,7 @@ function JuryCard({
             />
           )}
         </div>
-        <div className="flex flex-col items-start gap-[7px] lg:items-center">
+        <div className="flex flex-col items-start gap-[7px] lg:w-full lg:items-center lg:text-center">
           {companyLogoSource && judge.companyName && (
             <span
               aria-hidden
