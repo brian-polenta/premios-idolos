@@ -147,14 +147,14 @@ function JuryCard({
               }}
             />
           )}
-          <h3 className="font-serif text-[1.75rem] leading-[1.05] transition-colors duration-200 group-hover:text-brand-cream lg:min-h-[4.2rem] lg:content-center lg:text-[clamp(2rem,2.3vw,3rem)]">
+          <h3 className="font-serif text-[1.75rem] leading-[1.05] transition-colors duration-200 group-hover:text-brand-cream lg:min-h-[4.2rem] lg:w-full lg:content-center lg:text-center lg:text-[clamp(2rem,2.3vw,3rem)]">
             <span className="lg:hidden">{judge.name}</span>
             <span className="hidden lg:block">{firstName}</span>
             <span className="hidden lg:block">
               {remainingName.join(" ") || "\u00a0"}
             </span>
           </h3>
-          <p className="text-xs leading-normal font-semibold text-brand-ink/50 uppercase transition-colors duration-200 group-hover:text-brand-cream/70">
+          <p className="text-xs leading-normal font-semibold text-brand-ink/50 uppercase transition-colors duration-200 group-hover:text-brand-cream/70 lg:w-full lg:text-center">
             {judge.position}
           </p>
         </div>
