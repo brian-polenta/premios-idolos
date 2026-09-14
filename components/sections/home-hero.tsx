@@ -122,7 +122,7 @@ function HeroHeading({desktopTitle, mobileTitle}: {desktopTitle: string; mobileT
       data-char-reveal-load
       data-page-load-at="0.32"
       aria-label={desktopTitle}
-      className="w-full font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:text-[6.4497rem]"
+      className="w-full font-display text-[clamp(3.1rem,14.5vw,3.7rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:text-[5.9rem]"
     >
       <ResponsiveAccentUppercase desktopText={desktopTitle} mobileText={mobileTitle} />
     </h1>
