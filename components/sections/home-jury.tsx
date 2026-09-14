@@ -79,7 +79,7 @@ function JuryCard({
           width={800}
           height={800}
           sizes="(min-width: 1024px) 25vw, 3.6875rem"
-          quality={90}
+          quality={80}
           className="size-[3.6875rem] shrink-0 object-cover lg:absolute lg:inset-0 lg:size-full lg:opacity-0 lg:transition-opacity lg:duration-500 lg:group-hover:opacity-100"
         />
       )}
