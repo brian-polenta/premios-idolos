@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import { buttonVariants } from "@/components/ui/button"
 import type {HomePage} from '@/lib/home-content'
 
@@ -96,7 +96,7 @@ export function HomeProcess({content}: {content: HomePage['process']}) {
                 size="large"
                 className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
               >
-                <AccentUppercase text={content.title} />
+                <ResponsiveAccentUppercase desktopText={content.titleDesktop} mobileText={content.titleMobile} />
               </EditorialHeading>
               <div className="hidden lg:block">
                 <ProcessCallToAction content={content} />

@@ -2,7 +2,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import type {Category, HomePage} from '@/lib/home-content'
 
 const fallbackCategories = [
@@ -48,7 +48,7 @@ export function HomeCategories({categories, content}: {categories: Category[]; c
               align="center"
               className="gap-4 md:gap-7"
             >
-              <AccentUppercase text={content.title} />
+              <ResponsiveAccentUppercase desktopText={content.titleDesktop} mobileText={content.titleMobile} />
             </EditorialHeading>
 
             <div

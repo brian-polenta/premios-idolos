@@ -7,7 +7,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import type {HomePage, Judge} from '@/lib/home-content'
 
 function TextLink({children}: {children: string}) {
@@ -253,7 +253,7 @@ export function HomeJury({judges, content}: {judges: Judge[]; content: HomePage[
             <div className="grid gap-14 lg:grid-cols-[32.8125rem_1fr] lg:gap-[4.5rem]">
               <div className="flex flex-col gap-4 lg:justify-between">
                 <EditorialHeading eyebrow={content.eyebrow}>
-                  <AccentUppercase text={content.title} />
+                  <ResponsiveAccentUppercase desktopText={content.titleDesktop} mobileText={content.titleMobile} />
                 </EditorialHeading>
                 <div className="flex flex-col items-start gap-5">
                   <p

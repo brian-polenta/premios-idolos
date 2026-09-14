@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { Eyebrow } from "@/components/typography/eyebrow"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import type {HomePage} from '@/lib/home-content'
 
 const recaps = [
@@ -47,11 +47,12 @@ function RecapHeading({content}: {content: HomePage['recap']}) {
         data-slot="home-recap_heading"
         data-char-reveal
         data-char-reveal-preserve
-        aria-label={content.title}
+        aria-label={content.titleDesktop}
         className="type-display w-full font-display tracking-[-0.02em]"
       >
-        <AccentUppercase
-          text={content.title}
+        <ResponsiveAccentUppercase
+          desktopText={content.titleDesktop}
+          mobileText={content.titleMobile}
           className="relative inline-block font-accent text-[1.12em] leading-[0] font-normal"
         />
       </h2>

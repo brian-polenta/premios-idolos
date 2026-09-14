@@ -4,7 +4,7 @@ import { BrandLogo } from "@/components/brand/brand-logo"
 import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import {buttonVariants} from '@/components/ui/button'
 import type {HomePage, SocialLink} from '@/lib/home-content'
 
@@ -112,7 +112,7 @@ function HeroCountdown({content}: {content: HomePage['hero']}) {
   )
 }
 
-function HeroHeading({title}: {title: string}) {
+function HeroHeading({desktopTitle, mobileTitle}: {desktopTitle: string; mobileTitle: string}) {
   return (
     <h1
       id="hero-heading"
@@ -121,10 +121,10 @@ function HeroHeading({title}: {title: string}) {
       data-char-reveal-preserve
       data-char-reveal-load
       data-page-load-at="0.32"
-      aria-label={title}
+      aria-label={desktopTitle}
       className="w-full font-display text-[clamp(3.4rem,15.92vw,4rem)] leading-[0.84] tracking-[-0.02em] text-brand-petal md:text-[6.4497rem]"
     >
-      <AccentUppercase text={title} />
+      <ResponsiveAccentUppercase desktopText={desktopTitle} mobileText={mobileTitle} />
     </h1>
   )
 }
@@ -170,7 +170,7 @@ export function HomeHero({content, socials}: {content: HomePage['hero']; socials
 
             <div className="flex w-full flex-col items-center gap-6">
               <div className="flex w-full flex-col items-center gap-3">
-                <HeroHeading title={content.title} />
+                <HeroHeading desktopTitle={content.titleDesktop} mobileTitle={content.titleMobile} />
                 <p
                   data-line-reveal
                   data-line-reveal-load

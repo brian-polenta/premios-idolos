@@ -230,6 +230,10 @@
     animation-name: marquee-right;
   }
 
+  [data-slot="home-categories_marquee"] .marquee-row {
+    animation-duration: 220s;
+  }
+
   .marquee-row:hover {
     animation-play-state: paused;
   }

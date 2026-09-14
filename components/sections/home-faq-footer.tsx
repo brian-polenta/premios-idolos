@@ -7,7 +7,7 @@ import { Container } from "@/components/layout/container"
 import { PageGutter } from "@/components/layout/page-gutter"
 import { Section } from "@/components/layout/section"
 import { EditorialHeading } from "@/components/typography/editorial-heading"
-import { AccentUppercase } from "@/components/typography/accent-uppercase"
+import { ResponsiveAccentUppercase } from "@/components/typography/accent-uppercase"
 import type {Faq, HomePage, SiteSettings, SocialLink} from '@/lib/home-content'
 
 const socials = [
@@ -116,7 +116,7 @@ export function HomeFaqFooter({faqs, content, settings}: {faqs: Faq[]; content: 
                   size="large"
                   className="[&_h2]:text-[clamp(5.1rem,7.4vw,6.8rem)] lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
                 >
-                  <AccentUppercase text={content.title} />
+                  <ResponsiveAccentUppercase desktopText={content.titleDesktop} mobileText={content.titleMobile} />
                 </EditorialHeading>
                 <div className="hidden lg:block">
                   <SocialLinks showLabel links={settings.socialLinks} />
