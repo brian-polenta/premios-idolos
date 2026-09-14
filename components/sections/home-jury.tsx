@@ -70,7 +70,7 @@ function JuryCard({
   return (
     <article
       data-slot="jury-card"
-      className={`group relative flex min-h-[6.25rem] items-start gap-4 px-[6px] py-[1.3125rem] lg:aspect-square lg:min-h-0 lg:items-center lg:justify-center lg:border-r lg:px-8 lg:py-5 lg:text-center ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
+      className={`group relative flex min-h-[6.25rem] items-start gap-4 px-[6px] py-[1.3125rem] transition-colors duration-500 lg:aspect-square lg:min-h-0 lg:items-center lg:justify-center lg:border-r lg:px-8 lg:py-5 lg:text-center lg:hover:bg-brand-ink ${withoutHorizontalStroke ? "" : "border-b border-brand-ink/20"}`}
     >
       {knownPhoto && (
         <Image
