@@ -10,7 +10,7 @@ import type {HomePage} from '@/lib/home-content'
 
 function ProcessCallToAction({content}: {content: HomePage['process']}) {
   return (
-    <div className="flex flex-col items-center gap-5 text-center lg:items-start lg:text-left">
+    <div className="flex flex-col items-center gap-5 text-center lg:items-start lg:gap-6 lg:text-left">
       <p
         data-line-reveal
         data-line-reveal-delay="0.2"
@@ -88,13 +88,13 @@ export function HomeProcess({content}: {content: HomePage['process']}) {
             data-slot="home-process_component"
             className="flex flex-col gap-14 py-28 lg:grid lg:min-h-[53rem] lg:grid-cols-[32.8125rem_1fr] lg:gap-[4.5rem] lg:py-[8.25rem]"
           >
-            <div className="flex flex-col items-center gap-12 lg:items-start lg:justify-between">
+            <div className="flex flex-col items-center gap-12 lg:items-start lg:gap-6">
               <EditorialHeading
                 eyebrow={content.eyebrow}
                 eyebrowTone="blush"
                 align="center"
                 size="large"
-                className="lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
+                className="lg:gap-6 lg:items-start lg:text-left lg:[&_[data-slot=eyebrow]_span:first-child]:!w-5"
               >
                 <ResponsiveAccentUppercase desktopText={content.titleDesktop} mobileText={content.titleMobile} />
               </EditorialHeading>
