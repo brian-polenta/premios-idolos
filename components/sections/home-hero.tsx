@@ -149,7 +149,7 @@ export function HomeHero({content, socials}: {content: HomePage['hero']; socials
         aria-hidden
         tabIndex={-1}
       >
-        <source src={content.videoUrl ?? '/media/hero.mp4'} type="video/mp4" />
+        <source src={content.videoUrl ?? '/media/hero.mp4'} />
       </video>
 
       <div className="absolute inset-0 bg-brand-charcoal/45" aria-hidden />
