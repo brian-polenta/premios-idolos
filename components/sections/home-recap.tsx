@@ -15,7 +15,7 @@ const recaps = [
     logo: "/images/recap/luzu-logo.png",
     frameMobile: "/images/recap/frame-luzu-test.png",
     frameDesktop: "/images/recap/frame-left.svg",
-    href: "https://www.youtube.com/watch?v=T_qqm1cTT0o&t=1855s",
+    href: "https://www.youtube.com/watch?v=nTYW3Q8o2Us",
     imagePosition: "object-center",
   },
   {
@@ -25,7 +25,7 @@ const recaps = [
     logo: "/images/recap/telefe.png",
     frameMobile: "/images/recap/frame-luzu-test.png",
     frameDesktop: "/images/recap/frame-right.svg",
-    href: "https://www.youtube.com/watch?v=nTYW3Q8o2Us",
+    href: "https://www.youtube.com/watch?v=T_qqm1cTT0o&t=1855s",
     imagePosition: "object-center",
   },
 ] as const
